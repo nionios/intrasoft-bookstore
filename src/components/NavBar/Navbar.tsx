@@ -6,11 +6,12 @@ import LoginButton from "@/components/LoginButton/LoginButton";
 import GlobeButton from "@/components/GlobeButton/GlobeButton";
 
 /**
- * Returns a NavBar for our site, where routes are updated automatically.
+ * @returns a NavBar, where routes are updated automatically.
  * @constructor
  */
 const NavBar = () => {
-    // Populate routes const tto dynamically add route links.
+
+    // Populate routes const to dynamically add route links.
     const routes = ["home"];
     // Generate route list
     const routeList = (routes:string[], isMobile:boolean) => (
@@ -39,8 +40,7 @@ const NavBar = () => {
                             type="button"
                             className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
                             aria-controls="mobile-menu"
-                            aria-expanded="false"
-                        >
+                            aria-expanded="false">
                             <span className="absolute -inset-0.5"></span>
                             <span className="sr-only">Open main menu</span>
                             {/* Icon when menu is closed. */}
@@ -74,7 +74,7 @@ const NavBar = () => {
                     </div>
                     <div className="flex flex-1 items-end justify-center sm:items-stretch sm:justify-start">
                         <div className="flex flex-shrink-0 items-center">
-                            <KarieraLogo/>
+                            <KarieraLogo isMobile={false}/>
                         </div>
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-4">
@@ -93,7 +93,8 @@ const NavBar = () => {
                     {routeList(routes, true)}
                 </div>
             </div>
-        </nav>);
+        </nav>
+    );
 };
 
 export default NavBar;

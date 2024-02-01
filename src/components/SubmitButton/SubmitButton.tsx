@@ -1,3 +1,4 @@
+"use client";
 export default function SubmitButton(props: {buttonText: string, reqBody: any}) {
     const submitFunction = () => {
         fetch('/api/talk', {

@@ -8,6 +8,7 @@ import React from "react";
  * @param props.className {string} - Additional class string to inject classnames into component.
  * @param props.isMobile {boolean} - A boolean prop that renders the button for mobile devices.
  * @constructor
+ * @returns <Link> to loginRoute with CSS for mobile/desktop depending on isMobile.
  */
 export default function LoginButton(props: {loginRoute: string, className: string, isMobile: boolean}) {
     return (
