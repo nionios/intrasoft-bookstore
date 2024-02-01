@@ -3,10 +3,11 @@
  * @constructor
  * @returns SVG Logo of a globe
  */
-export default function GlobeButton () {
+export default function GlobeButton() {
     return (
+        <span className="grid content-center">
         <svg width="24"
-             height="25"
+             height="24"
              className="grey-violet-brand-color"
              viewBox="0 0 24 25"
              fill="none"
@@ -24,5 +25,6 @@ export default function GlobeButton () {
                 </clipPath>
             </defs>
         </svg>
+        </span>
     );
 }

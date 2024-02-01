@@ -2,7 +2,7 @@
 import React from "react";
 import Link from 'next/link'
 import KarieraLogo from "@/components/KarieraLogo/KarieraLogo";
-import LoginButton from "@/components/LoginButton/LoginButton";
+import LogoutButton from "@/components/LogoutButton/LogoutButton";
 import GlobeButton from "@/components/GlobeButton/GlobeButton";
 
 /**
@@ -11,27 +11,8 @@ import GlobeButton from "@/components/GlobeButton/GlobeButton";
  */
 const NavBar = () => {
 
-    // Populate routes const to dynamically add route links.
-    const routes = ["home"];
-    // Generate route list
-    const routeList = (routes:string[], isMobile:boolean) => (
-        <>
-            {routes.map((route, index) => (
-                <Link href={`/${route}`}
-                   className={isMobile ?
-                       "bg-gray-700 text-white block rounded-md px-3 py-2 text-base font-medium" :
-                       "bg-gray-700 text-white rounded-md px-3 py-2 text-sm font-medium"}
-                   style={{textTransform: "capitalize"}}
-                   aria-current={index === 0 ? 'page' : undefined}
-                   key={index}>
-                    {route}
-                </Link>
-            ))}
-        </>
-    );
-
     return (
-        <nav className="bg-gray-800">
+        <nav className="bg-gray-600">
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-center">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -72,15 +53,18 @@ const NavBar = () => {
                             </svg>
                         </button>
                     </div>
-                    <div className="flex flex-1 items-end justify-center sm:items-stretch sm:justify-start">
+                    <div className="flex flex-1 items-end justify-start">
                         <div className="flex flex-shrink-0 items-center">
                             <KarieraLogo isMobile={false}/>
                         </div>
-                        <div className="hidden sm:ml-6 sm:block">
+                    </div>
+                    <div className="flex flex-1 items-end justify-end">
+                        <div className="mr-6">
                             <div className="flex space-x-4">
-                                {routeList(routes, false)}
                                 <GlobeButton/>
-                                <LoginButton className="justify-end" loginRoute="login" isMobile={false}/>
+                                <LogoutButton className="justify-end"
+                                              loginRoute="login"
+                                              isMobile={false}/>
                             </div>
                         </div>
                     </div>
@@ -90,7 +74,6 @@ const NavBar = () => {
             <div className="sm:hidden"
                  id="mobile-menu">
                 <div className="space-y-1 px-2 pb-3 pt-2">
-                    {routeList(routes, true)}
                 </div>
             </div>
         </nav>

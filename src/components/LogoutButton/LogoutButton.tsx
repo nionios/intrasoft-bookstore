@@ -10,7 +10,7 @@ import React from "react";
  * @constructor
  * @returns <Link> to loginRoute with CSS for mobile/desktop depending on isMobile.
  */
-export default function LoginButton(props: {loginRoute: string, className: string, isMobile: boolean}) {
+export default function LogoutButton(props: {loginRoute: string, className: string, isMobile: boolean}) {
     return (
         <Link href={`/${props.loginRoute}`}
               className={`${props.className}
@@ -18,7 +18,7 @@ export default function LoginButton(props: {loginRoute: string, className: strin
                   "bg-secondary-brand-color text-white block rounded-xl px-4 py-2 text-base font-medium" :
                   "bg-secondary-brand-color text-white rounded-xl px-10 py-2 text-sm font-medium"}`}
               style={{textTransform: "capitalize"}}>
-            {props.loginRoute}
+            Logout
         </Link>
     );
 }

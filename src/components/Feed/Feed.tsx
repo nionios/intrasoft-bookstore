@@ -19,7 +19,7 @@ export default function Feed() {
             <JobList/>
             <div style={{position: "absolute", top: "2000px"}}>
                 <ScrollTrigger onEnter={onEnterViewport}>
-                    {isVisible ? null : null}
+                    {isVisible ? /*</LoginModal>*/ null : null}
                 </ScrollTrigger>
             </div>
         </>
