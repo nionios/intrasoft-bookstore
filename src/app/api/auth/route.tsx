@@ -7,7 +7,7 @@ import reportToSocket from "next/dist/client/tracing/report-to-socket";
 export async function POST(request) {
     const body = await request.json();
     const config = {
-        url: 'https://ka-fe-assignment.azurewebsites.net/api/login',
+        url: `${process.env.endpointURL}/api/login`,
         method: 'post',
         headers: {
             'Content-Type': 'application/json'

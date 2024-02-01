@@ -1,19 +1,36 @@
-import JobBox from "@/components/JobBox/JobBox";
 import Spinner from "@/components/Spinner/Spinner";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {useState, useEffect} from "react";
-import {createServerOnlyClientOnlyAliases} from "next/dist/build/create-compiler-aliases";
+import axios from 'axios';
+import {useState} from "react";
+import retrieveJWT from "@/lib/retrieveJWT";
 
 /**
  * Retrieve job posts from server to display them in UI
- * @returns  An array with retrieved jobs in JobBox component form.
+ * @returns {JobBox[]} Retrieved jobs in JobBox component array form.
  */
-function fetchJobs ()  {
-    let addedJobBoxes = []
-    for (let i=0; i<50; i++) {
-        addedJobBoxes.push(JobBox(i));
+const fetchJobs = async () => {
+    const config = {
+        url: `${process.env.endpointURL}/api/job-posts`,
+        method: 'get',
+        headers: {
+            'Content-Type': 'application/json',
+            "Authorization" : `Bearer ${retrieveJWT()}`
+        },
+        data: {
+            page: 1,
+            sizePerPage: 10,
+        },
     }
-    return addedJobBoxes;
+
+
+    // TODO: See if auth is happening with endpoint, parse results, convert to JobBox (modify) then display.
+    try {
+        const endpointResponse = await axios(config);
+    } catch (error) {
+        console.error(error)
+    }
+
+    return
 };
 
 /**
@@ -21,7 +38,7 @@ function fetchJobs ()  {
  * @returns An infinite list of jobboxes that are fetched through fetchJobs()
  * @constructor
  */
-export default function JobList () {
+export default function JobList() {
     const [jobBoxes, setJobPosts_] = useState(fetchJobs());
 
     /**
@@ -29,25 +46,25 @@ export default function JobList () {
      */
     const updateJobPosts = () => {
         console.log(jobBoxes)
-        setJobPosts_(jobBoxes => [...jobBoxes, fetchJobs()] );
+        setJobPosts_(jobBoxes => [...jobBoxes, fetchJobs()]);
     }
 
     return (
-        <InfiniteScroll
-            dataLength={jobBoxes.length} //This is important field to render the next data
-            next={updateJobPosts}
-            hasMore={true}
-            loader={<Spinner/>}
-            endMessage={
-                <p style={{textAlign: 'center'}}>
-                    <b>You have seen it all!</b>
-                </p>
-            }>
+        <ul role="list"
+            className="divide-y divide-gray-100">
+            <InfiniteScroll
+                dataLength={jobBoxes.length} //This is important field to render the next data
+                next={updateJobPosts}
+                hasMore={true}
+                loader={<Spinner/>}
+                endMessage={
+                    <p style={{textAlign: 'center'}}>
+                        <b>You have seen it all!</b>
+                    </p>
+                }>
                 {jobBoxes}
-        </InfiniteScroll>
+            </InfiniteScroll>
+        </ul>
     );
 }
-//        <ul role="list"
-//             className="divide-y divide-gray-100">
-//             {JobBoxes}
-//         </ul>
+
