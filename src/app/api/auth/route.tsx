@@ -1,6 +1,6 @@
 import {SignJWT} from "jose";
 import {NextResponse} from "next/server";
-import {getJwtSecretKey} from "@/libs/auth";
+import {getJwtSecretKey} from "@/lib/retrieveJWT";
 import axios from "axios";
 import reportToSocket from "next/dist/client/tracing/report-to-socket";
 
@@ -18,36 +18,37 @@ export async function POST(request) {
         },
     }
 
+    let endpointResponse;
     try {
-        const response = await axios(config);
+        endpointResponse = await axios(config);
     } catch (error) {
         console.error(error);
         return NextResponse.json({authFail: true});
     }
-    console.log(response);
+    console.log(endpointResponse);
 
-    return NextResponse.redirect(new URL('/home', request.url))
+    const encodedToken = new TextEncoder().encode(endpointResponse.data.token.accessToken);
+    const expirationDate = new Date(endpointResponse.data.token.expiresIn);
 
+    const token = await new SignJWT({
+        username: endpointResponse.data.email,
+        role: "user"
+    })
+        .setProtectedHeader({alg: "HS256"})
+        .setIssuedAt()
+        .setExpirationTime(expirationDate) // Set expiration time
+        .sign(encodedToken);
 
-    // Make that below if condition as your own backend api call to validate user
-    // if (body.username === "admin" && body.password === "admin") {
-    // const token = await new SignJWT({
-    //     username: body.username,
-    //     role: "user"
-    // })
-    //     .setProtectedHeader({alg: "HS256"})
-    //     .setIssuedAt()
-    //     .setExpirationTime("30s") // Set your own expiration time
-    //     .sign(getJwtSecretKey());
-    //
-    // const response = NextResponse.json(
-    //     {success: true},
-    //     {status: 200, headers: {"content-type": "application/json"}}
-    // );
-    //
-    // response.cookies.set({
-    //     name: "token",
-    //     value: token,
-    //     path: "/",
-    // });
+    const apiResponse = NextResponse.json(
+        {},
+        {status: 200}
+    );
+
+    apiResponse.cookies.set({
+        name: "token",
+        value: token,
+        path: "/",
+    });
+
+    return apiResponse;
 }

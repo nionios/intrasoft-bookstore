@@ -2,6 +2,7 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
 import ErrorAlert from "@/components/ErrorAlert/ErrorAlert";
+import {redirect} from "next/navigation";
 
 export default function SubmitButton(props: { buttonText: string, reqBody: any }) {
 
@@ -20,6 +21,8 @@ export default function SubmitButton(props: { buttonText: string, reqBody: any }
             .then((response) => {
                 if (!!response.data.authFail) {
                     setError("Wrong Password and/or Email.");
+                } else if (response.status === 200) {
+                    document.location.href = '/home';
                 } else {
                     setError("Server Error, please try again later.");
                 }
