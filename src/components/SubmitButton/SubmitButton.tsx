@@ -14,10 +14,7 @@ export default function SubmitButton(props: { buttonText: string, reqBody: any }
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: {
-                email: "Fred@gmail.com",
-                password: "Flintstone"
-            },
+            data: new FormData(document.getElementById('loginForm'))
         }
         axios(config)
             .then((response) => {
@@ -37,7 +34,7 @@ export default function SubmitButton(props: { buttonText: string, reqBody: any }
             {errorText === '' ? null : <ErrorAlert errorText={errorText}/>}
             <button type="button"
                     onClick={submitFunction}
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    className="flex w-full justify-center rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 {props.buttonText}
             </button>
         </>

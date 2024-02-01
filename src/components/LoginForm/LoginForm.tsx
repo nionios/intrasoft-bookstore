@@ -11,7 +11,7 @@ export default function LoginForm () {
                 </h2>
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6">
+                <form id="loginForm" className="space-y-6">
                     <div>
                         <label htmlFor="email"
                                className="block text-sm font-medium leading-6 text-gray-900">
