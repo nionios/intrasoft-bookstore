@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import ScrollTrigger from "react-scroll-trigger";
 import LoginModal from "@/components/LoginModal/LoginModal";
-import styles from "@/components/Feed/Feed.module.css";
+import JobList from "@/components/JobList/JobList";
 
 /**
  * Feed component. Features a login modal popup when user scrolls down a specified amount of pixels.
@@ -15,10 +15,13 @@ export default function Feed() {
     const onEnterViewport = () => setIsVisible(true);
 
     return (
-        <div style={{position: "absolute", top: "3000px"}}>
-            <ScrollTrigger onEnter={onEnterViewport}>
-                {isVisible ? <LoginModal/> : null}
-            </ScrollTrigger>
-        </div>
+        <>
+            <JobList/>
+            <div style={{position: "absolute", top: "2000px"}}>
+                <ScrollTrigger onEnter={onEnterViewport}>
+                    {isVisible ? <LoginModal/> : null}
+                </ScrollTrigger>
+            </div>
+        </>
     );
 }
