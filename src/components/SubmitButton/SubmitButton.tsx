@@ -19,7 +19,7 @@ export default function SubmitButton(props: { buttonText: string, reqBody: any }
         }
         axios(config)
             .then((response) => {
-                if (!!response.data.authFail) {
+                if (response.data.authFail) {
                     setError("Wrong Password and/or Email.");
                 } else if (response.status === 200) {
                     document.location.href = '/home';
