@@ -1,10 +1,12 @@
 import {SignJWT} from "jose";
-import {NextResponse} from "next/server";
+import {NextRequest, NextResponse} from "next/server";
 import retrieveJWT, {getJwtSecretKey} from "@/lib/retrieveJWT";
 import axios from "axios";
 import reportToSocket from "next/dist/client/tracing/report-to-socket";
 
-export async function GET(request) {
+export async function POST(request: NextRequest) {
+    const body = await request.json();
+
     const config = {
         url: `${process.env.endpointURL}/api/job-posts`,
         method: 'get',
@@ -13,8 +15,8 @@ export async function GET(request) {
             "Authorization" : `Bearer ${retrieveJWT(request)}`
         },
         params: {
-            page: 1,
-            sizePerPage: 10,
+            page: body.page,
+            sizePerPage: body.sizePerPage,
         },
     }
 
