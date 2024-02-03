@@ -32,6 +32,17 @@ body {
     text-wrap: balance;
   }
 }
+
+/* Make buttons scale slightly on hover, turn of animations in case user uses motion-reduce */
+.btn-animate {
+  @apply hover:scale-105 active:scale-95 transition-all motion-reduce:transition-none motion-reduce:hover:transform-none
+}
+
+/* Construct fade animation from tailwind css classes */
+.fade {
+  @apply transition-opacity ease-in duration-700
+}
+
 /* Kariera.gr Brand Colors */
 .bg-secondary-brand-color {
   background-color: #FF2458;

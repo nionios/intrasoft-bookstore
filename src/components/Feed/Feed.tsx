@@ -14,7 +14,7 @@ import {initialize} from "next/client";
  * @param props
  * @param props.initialJobs {Array<JobBox>} An array with the initial jobs on page fetched from api.
  */
-export default function Feed(props: { initialJobs: Array<typeof JobBox> }) {
+export default function Feed(props: { initialJobs: Array<any> }) {
     const [isVisible, setIsVisible] = useState();
     const onEnterViewport = () => setIsVisible(true);
 

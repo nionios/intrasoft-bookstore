@@ -62,7 +62,7 @@ const NavBar = () => {
                         <div className="mr-6">
                             <div className="flex space-x-4">
                                 <GlobeButton/>
-                                <LogoutButton className="justify-end"
+                                <LogoutButton className="btn-animate justify-end"
                                               loginRoute="login"
                                               isMobile={false}/>
                             </div>

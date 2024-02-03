@@ -1,11 +1,16 @@
+import loader from "@/../public/graphics/loader.gif";
+import Image from "next/image";
+
 /**
- * @returns A spinner animation using an SVG from Tailwind.css
+ * @returns A spinner animation using an GIF image
  * @constructor
  */
-export default function Spinner () {
+export default function Spinner() {
     return (
-        <svg className="animate-spin h-5 w-5 mr-3"
-             viewBox="0 0 24 24">
-        </svg>
+        <div className="flex text-sm justify-center">
+            <Image src={loader}
+                   alt="Spinner"/>
+            <span className="pl-5"> loading more jobs </span>
+        </div>
     );
 }

@@ -35,7 +35,7 @@ const fetchJobs = (cookies: Cookies, page: number) => {
         },
         data: {
             page: page,
-            sizePerPage: 10,
+            sizePerPage: 20,
         },
     }
     // Make axios request to api and get the job posts.
@@ -68,10 +68,13 @@ const fetchJobs = (cookies: Cookies, page: number) => {
  * @param props
  * @param props.initialJobs {Array<JobBox>} An array with the initial jobs on page fetched from api.
  */
-export default function JobList(props: { initialJobs: Array<JobBox> }) {
+export default function JobList(props: { initialJobs: Array<any> }) {
     const cookies = useCookies();
-    const [jobBoxes, setJobPosts_] = useState(props.initialJobs);
-    const [jobPage, setJobPage] = useState(1);
+    const [jobBoxes, setJobPosts_] = useState(populateJobBoxes(props.initialJobs));
+    /**
+     * We start with page 2, since the first page is already pre-fetched when we access homepage. @see preFetchJobs()
+     */
+    const [jobPage, setJobPage] = useState(2);
 
     /**
      * Wrapper around setJobPosts_ that calls fetchJobs and pushes results to already fetched jobs.

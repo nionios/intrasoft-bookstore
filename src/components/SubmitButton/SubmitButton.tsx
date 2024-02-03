@@ -2,9 +2,8 @@
 import axios from "axios";
 import {useState, useEffect} from "react";
 import ErrorAlert from "@/components/ErrorAlert/ErrorAlert";
-import {redirect} from "next/navigation";
 
-export default function SubmitButton(props: { buttonText: string, reqBody: any }) {
+export default function SubmitButton(props: { buttonText: string }) {
 
     const [errorText, setError] = useState('');
 
@@ -37,7 +36,7 @@ export default function SubmitButton(props: { buttonText: string, reqBody: any }
             {errorText === '' ? null : <ErrorAlert errorText={errorText}/>}
             <button type="button"
                     onClick={submitFunction}
-                    className="flex w-full justify-center rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    className="btn-animate flex w-full justify-center rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
                 {props.buttonText}
             </button>
         </>

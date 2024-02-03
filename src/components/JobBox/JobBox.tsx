@@ -1,3 +1,5 @@
+import {useEffect, useRef, useState} from "react";
+
 export default function JobBox(props: {
         id: number,
         companyName: string,
@@ -6,9 +8,12 @@ export default function JobBox(props: {
         validUntil : number,
         title : string,
         description : string
-
 }) {
-
+    // const [fadeIn, setFadeIn] = useState(false);
+    //
+    // useEffect(() => {
+    //     setFadeIn(true);
+    // }, []);
     /**
      * Helper function to format dates nicely into "X days/seconds/minutes before" strings.
      * @param inputEpoch {number} The UNIX epoch input that signifies a date in the past.
@@ -40,15 +45,16 @@ export default function JobBox(props: {
     const createdAtDifference = formatDateDifference(props.createdAt);
 
     /* In production we would check if job post is valid by comparing epochs and if it was not, we would not
-    display the jobbox by returning null on expired job post. But no valid posts exist in endpoint
-    const todaysEpoch = (new Date(2010, 6, 26).getTime() / 1000);
+     * display the jobbox by returning null on expired job post. But no valid posts exist in endpoint
+     * const todaysEpoch = (new Date(2010, 6, 26).getTime() / 1000); */
+    /*
     if ( todaysEpoch - props.validUntil < 0) {
         return null;
     }
     */
 
     return (
-        <li key={props.id} className="flex justify-between gap-x-6 py-5">
+        <li key={props.id} className={`flex fade ${true ? "opacity-100" : "opacity-0"} justify-between gap-x-6 py-5`}>
             <div className="flex min-w-0 gap-x-4">
                 <img className="h-12 w-12 flex-none rounded-full bg-gray-50"
                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"

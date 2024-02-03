@@ -1,8 +1,6 @@
-import {SignJWT} from "jose";
 import {NextRequest, NextResponse} from "next/server";
-import retrieveJWT, {getJwtSecretKey} from "@/lib/retrieveJWT";
+import retrieveJWT from "@/lib/retrieveJWT";
 import axios from "axios";
-import reportToSocket from "next/dist/client/tracing/report-to-socket";
 
 export async function POST(request: NextRequest) {
     const body = await request.json();
@@ -28,10 +26,8 @@ export async function POST(request: NextRequest) {
         return NextResponse.json({}, {status: 400});
     }
 
-    const apiResponse = NextResponse.json(
+    return NextResponse.json(
         {items: endpointResponse.data.items},
         {status: 200}
     );
-
-    return apiResponse;
 }

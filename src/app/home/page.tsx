@@ -8,25 +8,12 @@ import { redirect } from 'next/navigation'
 import {RequestCookie} from "next/dist/compiled/@edge-runtime/cookies";
 
 /**
- * Creates an array of JobBoxes and fills them with job info from input array.
- * @param jobs {Array}
- */
-const populateJobBoxes = (jobs: Array<any>) => {
-    const jobBoxes: any = [];
-    console.log(jobs)
-    jobs.forEach(job => {
-        jobBoxes.push(JobBox(job));
-    });
-    return jobBoxes;
-}
-
-/**
  * Asynchronous function in order to pre-fetch jobs when first rendering the Home page
  * @returns {Array<JobBox>} An array of JobBox components.
  * @param token {string} The token string
  * @throws Error when user is not authorized or there is a server error
  */
-const preFetchJobs = async (token: string): Promise<Array<typeof JobBox>> => {
+const preFetchJobs = async (token: string): Promise<Array<any>> => {
     const config = {
         url: `${process.env.endpointURL}/api/job-posts`,
         method: 'get',
@@ -36,13 +23,13 @@ const preFetchJobs = async (token: string): Promise<Array<typeof JobBox>> => {
         },
         params: {
             page: 1,
-            sizePerPage: 10,
+            sizePerPage: 20,
         },
     }
     let endpointResponse;
     try {
         endpointResponse = await axios(config);
-        return populateJobBoxes(endpointResponse.data.items);
+        return endpointResponse.data.items;
     } catch (error) {
         // If endpoint returns status 401 (Unauthorized), then token is invalid or expired, redirect to login page
         // to re-quthenticate.
@@ -77,7 +64,7 @@ export default async function Home(): Promise<JSX.Element> {
     if (typeof (token) === "undefined") {
         redirect("/login");
     }
-    let initialJobs : Array<typeof JobBox>;
+    let initialJobs : Array<any>;
     try {
          initialJobs = await preFetchJobs(token.value);
     } catch (error) {

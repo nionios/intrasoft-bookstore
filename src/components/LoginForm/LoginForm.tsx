@@ -47,7 +47,7 @@ export default function LoginForm () {
                         </div>
                     </div>
                     <div>
-                        <SubmitButton buttonText="Log In"></SubmitButton>
+                        <SubmitButton buttonText="Log In"/>
                     </div>
                 </form>
                 <p className="mt-10 text-center text-sm text-gray-500">
