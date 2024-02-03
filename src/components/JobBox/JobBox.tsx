@@ -1,19 +1,14 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function JobBox(props: {
-        id: number,
-        companyName: string,
-        address: string,
-        createdAt : number,
-        validUntil : number,
-        title : string,
-        description : string
+    id: number,
+    companyName: string,
+    address: string,
+    createdAt: number,
+    validUntil: number,
+    title: string,
+    description: string
 }) {
-    // const [fadeIn, setFadeIn] = useState(false);
-    //
-    // useEffect(() => {
-    //     setFadeIn(true);
-    // }, []);
     /**
      * Helper function to format dates nicely into "X days/seconds/minutes before" strings.
      * @param inputEpoch {number} The UNIX epoch input that signifies a date in the past.
@@ -25,8 +20,8 @@ export default function JobBox(props: {
 
         const seconds = Math.floor(timeDifference / 1000);
         const minutes = Math.floor(seconds / 60);
-        const hours   = Math.floor(minutes / 60);
-        const days    = Math.floor(hours / 24);
+        const hours = Math.floor(minutes / 60);
+        const days = Math.floor(hours / 24);
 
         if (days > 0) {
             return days + " days ago";
@@ -39,9 +34,8 @@ export default function JobBox(props: {
         }
     }
 
-
     // Contruct dates from epoch shared from api.
-    const createdAt = new Date(props.createdAt).toISOString().substring(0,10);
+    const createdAt = new Date(props.createdAt).toISOString().substring(0, 10);
     const createdAtDifference = formatDateDifference(props.createdAt);
 
     /* In production we would check if job post is valid by comparing epochs and if it was not, we would not
@@ -54,7 +48,9 @@ export default function JobBox(props: {
     */
 
     return (
-        <li key={props.id} className={`flex fade ${true ? "opacity-100" : "opacity-0"} justify-between gap-x-6 py-5`}>
+        <li id={`jobPost${props.id}`}
+            key={props.id}
+            className={`flex animate-fade justify-between gap-x-6 py-5`}>
             <div className="flex min-w-0 gap-x-4">
                 <img className="h-12 w-12 flex-none rounded-full bg-gray-50"
                      src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"

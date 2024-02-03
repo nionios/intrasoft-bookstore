@@ -42,11 +42,11 @@ const fetchJobs = (cookies: Cookies, page: number) => {
     return axios(config)
         .then((apiResponse) => {
             if (apiResponse.status === 200) {
-                // If apiResponse is empty array, then return null and don't try to populate jobBoxes.
+                // If apiResponse is empty array, then return [] and don't try to populate jobBoxes.
                 if (apiResponse.data.items.length !== 0) {
                     return populateJobBoxes(apiResponse.data.items);
                 } else {
-                    return null;
+                    return [];
                 }
             } else {
                 // If response status is 400, then pop up login modal, means auth was not successful.
@@ -71,6 +71,9 @@ const fetchJobs = (cookies: Cookies, page: number) => {
 export default function JobList(props: { initialJobs: Array<any> }) {
     const cookies = useCookies();
     const [jobBoxes, setJobPosts_] = useState(populateJobBoxes(props.initialJobs));
+    // hasMore is needed to stop querying the server for job posts once all the available jobs are displayed.
+    const [hasMore, setHasMore] = useState(true);
+
     /**
      * We start with page 2, since the first page is already pre-fetched when we access homepage. @see preFetchJobs()
      */
@@ -80,16 +83,19 @@ export default function JobList(props: { initialJobs: Array<any> }) {
      * Wrapper around setJobPosts_ that calls fetchJobs and pushes results to already fetched jobs.
      */
     const updateJobPosts = () => {
+        let previousJobNumber : number = jobBoxes.length;
         setJobPosts_(jobBoxes => [...jobBoxes, fetchJobs(cookies, jobPage)]);
+        // If no more jobPosts are fetched from server, stop running fetch jobs.
+        if (previousJobNumber === jobBoxes.length) setHasMore(false);
         // Increment the job page by 1 every time jobs are fetched.
-        setJobPage(jobPage+1);
+        else setJobPage(jobPage+1);
     }
 
     return (
         <InfiniteScroll
             dataLength={jobBoxes.length} //This is important field to render the next data
             next={updateJobPosts}
-            hasMore={true}
+            hasMore={hasMore}
             loader={<Spinner/>}
             endMessage={
                 <p style={{textAlign: 'center'}}>

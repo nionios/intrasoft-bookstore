@@ -39,7 +39,7 @@ body {
 }
 
 /* Construct fade animation from tailwind css classes */
-.fade {
+.fade-transition {
   @apply transition-opacity ease-in duration-700
 }
 
