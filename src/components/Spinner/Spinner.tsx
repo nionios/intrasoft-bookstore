@@ -7,10 +7,10 @@ import Image from "next/image";
  */
 export default function Spinner() {
     return (
-        <div className="flex text-sm justify-center">
+        <div className="flex text-sm justify-center spinner">
             <Image src={loader}
                    alt="Spinner"/>
-            <span className="pl-5"> loading more jobs </span>
+            <span className="pl-5 spinner-text"> loading more jobs </span>
         </div>
     );
 }

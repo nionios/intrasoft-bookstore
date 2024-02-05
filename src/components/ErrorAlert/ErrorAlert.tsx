@@ -12,7 +12,7 @@ export default function ErrorAlert (props: {errorText: string}) {
                 <span className="flex rounded-lg bg-red-500 uppercase px-2 py-1 text-xs font-bold mr-3">
                     Error!
                 </span>
-                <span className="font-semibold mr-2 text-left flex-auto">
+                <span className="error-text font-semibold mr-2 text-left flex-auto">
                     {props.errorText}
                 </span>
             </div>
