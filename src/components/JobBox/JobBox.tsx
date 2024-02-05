@@ -13,35 +13,9 @@ export default function JobBox(props: {
     title: string,
     description: string
 }) {
-    /**
-     * Helper function to format dates nicely into "X days/seconds/minutes before" strings.
-     * @param inputEpoch {number} The UNIX epoch input that signifies a date in the past.
-     * @returns {string} "X days/seconds/minutes before" string or "Just now"
-     */
-    const formatDateDifference = (inputEpoch: number) => {
-        const currentDate = new Date();
-        const timeDifference = currentDate - new Date(inputEpoch);
-
-        const seconds = Math.floor(timeDifference / 1000);
-        const minutes = Math.floor(seconds / 60);
-        const hours = Math.floor(minutes / 60);
-        const days = Math.floor(hours / 24);
-
-        if (days > 0) {
-            return days + " days ago";
-        } else if (hours > 0) {
-            return hours + " hours ago";
-        } else if (minutes > 0) {
-            return minutes + " minutes ago";
-        } else {
-            return "Just now";
-        }
-    }
-
     // Contruct dates from epoch shared from api.
-    const createdAt = new Date(props.createdAt).toISOString().substring(0, 10);
-    const createdAtLocaledate = new Date(props.createdAt).toDateString().substring(4, 10);
-    const createdAtDifference = formatDateDifference(props.createdAt);
+    const createdAtHumanDate = new Date(props.createdAt).toDateString().substring(4, 10);
+    const validUntilHumanDate = new Date(props.validUntil).toDateString().substring(4, 10);
 
     /* In production we would check if job post is valid by comparing epochs and if it was not, we would not
      * display the jobbox by returning null on expired job post. But no valid posts exist in endpoint
@@ -75,11 +49,11 @@ export default function JobBox(props: {
             <div className="grid row-span-1 col-span-4 grid-cols-4 grid-rows-1 gap-4 content-end">
                 <div className="grid col-span-1">
                     <DetailBox title="Date Posted"
-                               subtitle={createdAtLocaledate}/>
+                               subtitle={createdAtHumanDate}/>
                 </div>
                 <div className="grid col-span-1">
                     <DetailBox title="Apply Until"
-                               subtitle={props.address}/>
+                               subtitle={validUntilHumanDate}/>
                 </div>
                 <div className="grid col-span-1">
                     <DetailBox title="Location"

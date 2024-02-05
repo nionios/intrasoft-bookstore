@@ -22,6 +22,5 @@ export default function JobBoxSkeleton() {
                 </div>
             </div>
         </li>
-    )
-        ;
+    );
 }
