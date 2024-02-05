@@ -19,18 +19,47 @@
 body {
   color: rgb(var(--foreground-rgb));
   height: 1000px;
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  @apply bg-kariera-lightblue dark:bg-kariera-lightblue-dark
+}
+
+.btn-submit,
+nav {
+  @apply bg-kariera-darkblue dark:bg-kariera-darkblue-dark
+}
+
+.karieraLogoText {
+  @apply fill-kariera-darkblue-dark dark:fill-kariera-darkblue-light
+}
+
+h1, h2, h3 ,h4,
+label {
+  @apply text-kariera-gray-light dark:text-kariera-gray-dark
+}
+
+.job-post {
+  @apply bg-kariera-white-light dark:bg-kariera-white-dark
+}
+
+.kariera-accent {
+  @apply bg-kariera-accent dark:bg-kariera-accent-dark
+}
+
+.kariera-accent-border {
+  @apply border-kariera-accent dark:border-kariera-accent-dark
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+}
+
+nav {
+  overflow: hidden;
+  position: fixed;
+  z-index: 100;
+  top: 0;
+  width: 100%;
 }
 
 /* Make buttons scale slightly on hover, turn of animations in case user uses motion-reduce */

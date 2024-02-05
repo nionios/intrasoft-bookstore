@@ -5,6 +5,7 @@ import axios from 'axios';
 import {useState} from "react";
 import {Cookies, useCookies} from "next-client-cookies";
 import JobBox from "@/components/JobBox/JobBox";
+import JobBoxSkeleton from "@/components/JobBox/JobBoxSkeleton";
 
 /**
  * Creates an array of JobBoxes and fills them with job info from input array.
@@ -77,7 +78,6 @@ export default function JobList(props: { initialJobs: Array<any> }) {
      */
     const [jobPage, setJobPage] = useState(2);
 
-
     /**
      * Wrapper around setJobPosts_ that calls fetchJobs and pushes results to already fetched jobs.
      */
@@ -93,16 +93,31 @@ export default function JobList(props: { initialJobs: Array<any> }) {
         }
     }
 
+    /*
+     * Function to reset the variables in order to re-render list.
+     * @returns {void}
+     */
+    const resetVariables = () : void => {
+        setHasMore(true);
+        setJobPage(1);
+    }
+
     return (
         <InfiniteScroll
             dataLength={jobBoxes.length} //This is important field to render the next data
             next={updateJobPosts}
             hasMore={hasMore}
-            loader={<Spinner/>}
+            loader={
+                <>
+                    <JobBoxSkeleton/>
+                    <Spinner/>
+                </>
+            }
             endMessage={
-                <p style={{textAlign: 'center'}}>
-                    <b>You&apos;ve seen it all!</b>
-                </p>
+                    <p className="text-center">
+                        <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
+                        <b>You are all caught up!</b>
+                    </p>
             }>
             <ul role="list">
                 {jobBoxes}

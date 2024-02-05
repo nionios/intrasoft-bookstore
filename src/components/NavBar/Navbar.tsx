@@ -2,8 +2,8 @@
 import React from "react";
 import Link from 'next/link'
 import KarieraLogo from "@/components/KarieraLogo/KarieraLogo";
-import LogoutButton from "@/components/LogoutButton/LogoutButton";
-import GlobeButton from "@/components/GlobeButton/GlobeButton";
+import LogoutButton from "@/components/Buttons/LogoutButton/LogoutButton";
+import GlobeButton from "@/components/Buttons/GlobeButton/GlobeButton";
 
 /**
  * @returns a NavBar, where routes are updated automatically.
@@ -12,7 +12,7 @@ import GlobeButton from "@/components/GlobeButton/GlobeButton";
 const NavBar = () => {
 
     return (
-        <nav className="bg-gray-600">
+        <nav>
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex h-16 items-center justify-center">
                     <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -55,7 +55,7 @@ const NavBar = () => {
                     </div>
                     <div className="flex flex-1 items-end justify-start">
                         <div className="flex flex-shrink-0 items-center">
-                            <KarieraLogo isMobile={false}/>
+                            <KarieraLogo isMobile={true}/>
                         </div>
                     </div>
                     <div className="flex flex-1 items-end justify-end">

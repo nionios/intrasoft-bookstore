@@ -1,10 +1,10 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import {Source_Sans_3} from "next/font/google";
 import "./globals.css";
 import NavBar from "../components/NavBar/Navbar"
 import {CookiesProvider} from 'next-client-cookies/server';
 
-const inter = Inter({subsets: ["latin"]});
+const sourceSans3 = Source_Sans_3({subsets: ["latin"]});
 
 export const metadata: Metadata = {
     title: "SEAD Next.js test site",
@@ -18,7 +18,7 @@ export default function RootLayout(props: Readonly<{
     return (
         <html lang="en">
         <CookiesProvider>
-            <body className={inter.className}>
+            <body className={sourceSans3.className}>
             <NavBar/>
             {props.auth}
             {props.children}
