@@ -5,7 +5,6 @@
  */
 export default function GlobeButton() {
     return (
-        <span className="grid content-center">
         <svg width="24"
              height="24"
              className="grey-violet-brand-color"
@@ -25,6 +24,5 @@ export default function GlobeButton() {
                 </clipPath>
             </defs>
         </svg>
-        </span>
     );
 }

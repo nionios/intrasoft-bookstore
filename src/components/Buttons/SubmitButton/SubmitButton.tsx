@@ -36,7 +36,7 @@ export default function SubmitButton(props: { buttonText: string }) {
             {errorText === '' ? null : <ErrorAlert errorText={errorText}/>}
             <button type="button"
                     onClick={submitFunction}
-                    className="btn-animate btn-submit flex w-full justify-center rounded-lg bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+                    className="btn-animate btn-submit btn-red flex w-full justify-center rounded-lg px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm">
                 {props.buttonText}
             </button>
         </>

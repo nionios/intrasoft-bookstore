@@ -48,6 +48,10 @@ label {
   @apply border-kariera-lightgray dark:border-kariera-lightgray-dark
 }
 
+.btn-red {
+  @apply bg-kariera-red text-kariera-white hover:outline-kariera-red active:outline-kariera-red active:bg-kariera-white active:text-kariera-red
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
@@ -74,7 +78,7 @@ nav {
 
 /* Kariera.gr Brand Colors */
 .bg-secondary-brand-color {
-  background-color: #FF2458;
+  @apply bg-kariera-red
 }
 .grey-violet-brand-color {
   color: #B4B2BF;

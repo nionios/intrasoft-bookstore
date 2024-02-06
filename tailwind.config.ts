@@ -9,6 +9,11 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
+                'kariera-red': {
+                    light: "#FF2458",
+                    DEFAULT: "#FF2458",
+                    dark: "#FF2458"
+                },
                 'kariera-lightblue': {
                     light: "#FBFAFF",
                     DEFAULT: "#FBFAFF",
