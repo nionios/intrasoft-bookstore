@@ -1,5 +1,4 @@
 import DetailBox from "@/components/DetailBox/DetailBox";
-import SubmitButton from "@/components/Buttons/SubmitButton/SubmitButton";
 import Link from "next/link";
 import Image from "next/image";
 import companyImage from "@/../public/jobs/company.jpg"
@@ -28,9 +27,9 @@ export default function JobBox(props: {
     return (
         <li id={`jobPost${props.id}`}
             key={props.id}
-            className={`grid grid-rows-2 grid-cols-5 animate-fade job-post rounded-lg m-5 drop-shadow-lg gap-x-6 p-5`}>
+            className={`grid grid-rows-auto grid-cols-4 sm:grid-cols-5 animate-fade job-post rounded-lg m-5 drop-shadow-lg gap-x-6 p-5`}>
             <div className="row-span-2 col-span-1 min-w-0 gap-x-1">
-                <Image className="flex-none rounded-md bg-gray-50"
+                <Image className="flex shrink-0 rounded-md bg-gray-50"
                        width={200}
                        height={200}
                        src={companyImage}
@@ -46,7 +45,7 @@ export default function JobBox(props: {
                     </p>
                 </div>
             </div>
-            <div className="grid row-span-1 col-span-4 grid-cols-4 grid-rows-1 gap-4 content-end">
+            <div className="grid row-span-1 col-span-3 sm:col-span-4 grid-cols-3 sm:grid-cols-4 grid-rows-1 gap-4 content-end">
                 <div className="grid col-span-1">
                     <DetailBox title="Date Posted"
                                subtitle={createdAtHumanDate}/>
@@ -59,12 +58,19 @@ export default function JobBox(props: {
                     <DetailBox title="Location"
                                subtitle={props.address}/>
                 </div>
-                <div className="grid col-span-1 justify-center content-center">
-                    <Link href="#" className="bg-secondary-brand-color text-white rounded-xl px-10 py-1">
+                <div className="hidden shrink-0 sm:flex sm:flex-col col-span-1 justify-center content-center">
+                    <Link href="#"
+                          className="bg-secondary-brand-color text-white text-center rounded-xl px-10 py-1">
                         Apply Now
                     </Link>
                 </div>
             </div>
+            <div className="shrink-0 flex sm:hidden row-span-1 col-span-5 pt-6 justify-center content-center">
+                <Link href="#"
+                      className="bg-secondary-brand-color text-white text-center rounded-xl px-20 py-1">
+                    Apply Now
+                </Link>
+            </div>
         </li>
-);
+    );
 }
