@@ -114,7 +114,7 @@ export default function JobList(props: { initialJobs: Array<any> }) {
                 </>
             }
             endMessage={
-                    <p className="text-center end-message">
+                    <p className="text-center end-message mb-10">
                         <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
                         <b>You are all caught up!</b>
                     </p>

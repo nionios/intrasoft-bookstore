@@ -29,6 +29,11 @@ const config: Config = {
                     DEFAULT: "#3E4B5E",
                     dark: "#91aed9"
                 },
+                'kariera-lightgray': {
+                    light: "#F0EDFF",
+                    DEFAULT: "#F0EDFF",
+                    dark: "#535357"
+                },
                 'kariera-accent': {
                     light: "#FBFAFF",
                     DEFAULT: "#FBFAFF",

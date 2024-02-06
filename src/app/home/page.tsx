@@ -72,7 +72,7 @@ export default async function Home(): Promise<JSX.Element> {
     }
 
     return (
-        <main className="flex min-h-max flex-col items-center justify-between p-0 sm:p-10 pt-16">
+        <main className="flex min-h-max flex-col items-center justify-between pt-16">
             <Feed initialJobs={initialJobs}/>
         </main>
     );

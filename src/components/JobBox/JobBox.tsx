@@ -27,15 +27,15 @@ export default function JobBox(props: {
     return (
         <li id={`jobPost${props.id}`}
             key={props.id}
-            className={`grid grid-rows-auto grid-cols-4 sm:grid-cols-5 animate-fade job-post rounded-lg m-5 drop-shadow-lg gap-x-6 p-5`}>
-            <div className="row-span-2 col-span-1 min-w-0 gap-x-1">
-                <Image className="flex shrink-0 rounded-md bg-gray-50"
+            className={`grid grid-rows-auto grid-cols-3 md:grid-cols-5 animate-fade job-post rounded-lg m-5 drop-shadow-lg gap-x-2 md:gap-x-6 p-5 gap-y-4`}>
+            <div className="row-span-1 md:row-span-2 col-span-1 flex min-w-0 gap-x-1 mr-1">
+                <Image className="rounded-md shrink-0 bg-gray-50"
                        width={200}
                        height={200}
                        src={companyImage}
                        alt="An image of a company building."/>
             </div>
-            <div className="row-span-1 col-span-4 min-w-0 gap-x-4">
+            <div className="row-span-1 col-span-2 md:col-span-4 min-w-0 gap-x-4">
                 <div className="min-w-0 flex-auto">
                     <p className="mt-1 truncate text-md leading-5 text-gray-500">
                         {props.companyName}
@@ -45,7 +45,7 @@ export default function JobBox(props: {
                     </p>
                 </div>
             </div>
-            <div className="grid row-span-1 col-span-3 sm:col-span-4 grid-cols-3 sm:grid-cols-4 grid-rows-1 gap-4 content-end">
+            <div className="grid row-span-1 col-span-3 md:col-span-4 grid-cols-3 md:grid-cols-4 grid-rows-1 gap-4 content-end">
                 <div className="grid col-span-1">
                     <DetailBox title="Date Posted"
                                subtitle={createdAtHumanDate}/>
@@ -58,19 +58,17 @@ export default function JobBox(props: {
                     <DetailBox title="Location"
                                subtitle={props.address}/>
                 </div>
-                <div className="hidden shrink-0 sm:flex sm:flex-col col-span-1 justify-center content-center">
+                <div className="hidden shrink-0 md:flex md:flex-col col-span-1 justify-end">
                     <Link href="#"
-                          className="bg-secondary-brand-color text-white text-center rounded-xl px-10 py-1">
+                          className="btn-animate bg-secondary-brand-color text-white text-center rounded-lg px-10 py-2">
                         Apply Now
                     </Link>
                 </div>
             </div>
-            <div className="shrink-0 flex sm:hidden row-span-1 col-span-5 pt-6 justify-center content-center">
-                <Link href="#"
-                      className="bg-secondary-brand-color text-white text-center rounded-xl px-20 py-1">
+            <Link href="#"
+                  className="btn-animate shrink-0 grid md:hidden row-span-1 bg-secondary-brand-color rounded-lg col-span-5 mt-3 py-2 justify-center content-center text-white text-center">
                     Apply Now
-                </Link>
-            </div>
+            </Link>
         </li>
     );
 }

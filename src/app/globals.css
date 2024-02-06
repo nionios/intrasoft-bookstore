@@ -45,7 +45,7 @@ label {
 }
 
 .kariera-accent-border {
-  @apply border-kariera-accent dark:border-kariera-accent-dark
+  @apply border-kariera-lightgray dark:border-kariera-lightgray-dark
 }
 
 @layer utilities {
