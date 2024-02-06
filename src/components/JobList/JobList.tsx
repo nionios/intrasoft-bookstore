@@ -94,6 +94,14 @@ export default function JobList(props: { initialJobs: Array<any> }) {
     }
 
     /*
+     * Same functionality as updateJobPosts but resets the page number first.
+     */
+    const resetAndUpdateJobPosts = async () => {
+        setJobPage(1);
+        updateJobPosts();
+    }
+
+    /*
      * Function to reset the variables in order to re-render list.
      * @returns {void}
      */
@@ -106,7 +114,14 @@ export default function JobList(props: { initialJobs: Array<any> }) {
         <InfiniteScroll
             dataLength={jobBoxes.length} //This is important field to render the next data
             next={updateJobPosts}
+            pullDownToRefresh={true}
+            pullDownToRefreshThreshold={50}
+            releaseToRefreshContent={
+                <h3 className="text-center">&#8593; Release to refresh</h3>
+            }
+            refreshFunction={resetAndUpdateJobPosts}
             hasMore={hasMore}
+            height={2000}
             loader={
                 <>
                     <JobBoxSkeleton/>
