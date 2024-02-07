@@ -30,8 +30,8 @@ export default function JobBox(props: {
             className={`grid grid-rows-auto grid-cols-3 md:grid-cols-5 animate-fade job-post rounded-lg m-5 drop-shadow-lg gap-x-2 md:gap-x-6 p-5 gap-y-4`}>
             <div className="row-span-1 md:row-span-2 col-span-1 flex min-w-0 gap-x-1 mr-1">
                 <Image className="rounded-md shrink-0 bg-gray-50"
-                       width={200}
-                       height={200}
+                       width={150}
+                       height={150}
                        src={companyImage}
                        alt="An image of a company building."/>
             </div>
@@ -60,7 +60,7 @@ export default function JobBox(props: {
                 </div>
                 <div className="hidden shrink-0 md:flex md:flex-col col-span-1 justify-end">
                     <Link href="#"
-                          className="btn-animate bg-secondary-brand-color text-white text-center rounded-lg px-10 py-2">
+                          className="text-sm btn-animate bg-secondary-brand-color text-white text-center rounded-lg py-2">
                         Apply Now
                     </Link>
                 </div>

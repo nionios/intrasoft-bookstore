@@ -36,7 +36,7 @@ const fetchJobs = async (cookies: Cookies, page: number) => {
         },
         data: {
             page: page,
-            sizePerPage: 20,
+            sizePerPage: 5,
         },
     }
     // Make axios request to api and get the job posts.
@@ -121,7 +121,7 @@ export default function JobList(props: { initialJobs: Array<any> }) {
             }
             refreshFunction={resetAndUpdateJobPosts}
             hasMore={hasMore}
-            height={2000}
+            className="max-w-3xl"
             loader={
                 <>
                     <JobBoxSkeleton/>
