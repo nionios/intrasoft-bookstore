@@ -6,6 +6,8 @@ import JobBox from "@/components/JobBox/JobBox";
 import JobBoxSkeleton from "@/components/JobBox/JobBoxSkeleton";
 import fetchAllJobs from "@/lib/fetchAllJobs";
 import {useCookies} from "next-client-cookies";
+import isIterable from "@/lib/isIterable";
+
 /**
  * Component for the listing of jobs retrieved from server.
  * @returns An infinite list of jobboxes that are fetched through fetchAllJobs()
@@ -34,7 +36,7 @@ export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBo
             const prevJobBoxes = props.jobBoxes;
             // Check whether previous job boxes exist. If they do, then add the new ones after them.
             // Else, just set JobBoxes parent state with the new projects only.
-            if (Symbol.iterator in Object(prevJobBoxes)) {
+            if (isIterable(prevJobBoxes)) {
                 props.onJobBoxUpdate(prevJobBoxes => [...prevJobBoxes, fetchedJobPosts]);
             } else {
                 props.onJobBoxUpdate(fetchedJobPosts);
