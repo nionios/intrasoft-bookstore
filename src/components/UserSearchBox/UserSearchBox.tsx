@@ -38,10 +38,10 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onJobBoxUpdat
             <div className="text-sm">
                 {props.userInfo.userEmail}
             </div>
-            <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
+            <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>
             <div>
                 <label htmlFor="jobQuery"
-                       className="block text-sm font-medium leading-6 text-gray-900">
+                       className="block text-sm font-medium leading-6">
                     Search for a job
                 </label>
                 <div className="relative mt-2 rounded-md shadow-sm">

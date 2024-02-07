@@ -32,7 +32,13 @@ export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBo
             setHasMore(false);
         } else {
             const prevJobBoxes = props.jobBoxes;
-            props.onJobBoxUpdate(prevJobBoxes => [...prevJobBoxes, fetchedJobPosts]);
+            // Check whether previous job boxes exist. If they do, then add the new ones after them.
+            // Else, just set JobBoxes parent state with the new projects only.
+            if (Symbol.iterator in Object(prevJobBoxes)) {
+                props.onJobBoxUpdate(prevJobBoxes => [...prevJobBoxes, fetchedJobPosts]);
+            } else {
+                props.onJobBoxUpdate(fetchedJobPosts);
+            }
             // Increment the job page by 1 every time jobs are fetched.
             setJobPage(jobPage + 1);
         }
