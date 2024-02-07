@@ -15,6 +15,7 @@ export async function POST(request: NextRequest) {
         params: {
             page: body.page,
             sizePerPage: body.sizePerPage,
+            q: body.q,
         },
     }
 

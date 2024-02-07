@@ -24,7 +24,7 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onJobBoxUpdat
         }, 1000)
         // Always clear timeout on useEffect.
         return () => clearTimeout(delayDebounceFn)
-    }, [cookies, keyword, props]);
+    }, [cookies, keyword]);
 
     return (
         <div id="searchBox"
@@ -53,7 +53,7 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onJobBoxUpdat
                     <input type="text"
                            name="jobQuery"
                            id="jobQuery"
-                           onChange={(event) => setKeyword(event.target.value)}
+                           onChange={(e) => setKeyword(e.target.value)}
                            className="block w-full rounded-md border-0 py-1.5 pl-8 pr-20 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                            placeholder="Enter Keyword(s)..."/>
                 </div>
