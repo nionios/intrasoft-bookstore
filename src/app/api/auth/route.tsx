@@ -1,8 +1,5 @@
-import {SignJWT} from "jose";
 import {NextRequest, NextResponse} from "next/server";
-import {getJwtSecretKey} from "@/lib/retrieveJWT";
 import axios from "axios";
-import reportToSocket from "next/dist/client/tracing/report-to-socket";
 
 /**
  * API to call endpoint to login usesr and get JWT token, which is then stored in cookies with response.
@@ -31,20 +28,6 @@ export async function POST(request : NextRequest) {
         console.error(error);
         return NextResponse.json({authFail: true});
     }
-    // Encode token in order to sign it
-    /*
-    const encodedToken = new TextEncoder().encode(endpointResponse.data.token.accessToken);
-    const expirationDate = new Date(endpointResponse.data.token.expiresIn);
-
-    const token = await new SignJWT({
-        username: endpointResponse.data.email,
-        role: "user"
-    })
-        .setProtectedHeader({alg: "HS256"})
-        .setIssuedAt()
-        .setExpirationTime(expirationDate) // Set expiration time
-        .sign(encodedToken);
-    */
 
     // Make apiResponse to pass to front-end
     const apiResponse = NextResponse.json(
@@ -52,13 +35,35 @@ export async function POST(request : NextRequest) {
         {status: 200}
     );
     // Get relevant info from endpoint response (token string and expiration date)
-    //TODO: cookies for user and user id etc.
     const token = endpointResponse.data.token.accessToken;
+    const userEmail = endpointResponse.data.user.email;
+    // FIXME: Endpoint returns "fistname" instead of "firstName"
+    const userFirstName = endpointResponse.data.user.fistName;
+    const userLastName = endpointResponse.data.user.lastName;
     const expirationDate = new Date(endpointResponse.data.token.expiresIn);
 
+    // Set all cookies with user info.
     apiResponse.cookies.set({
         name: "token",
         value: token,
+        expires: expirationDate,
+        path: "/",
+    });
+    apiResponse.cookies.set({
+        name: "userEmail",
+        value: userEmail,
+        expires: expirationDate,
+        path: "/",
+    });
+    apiResponse.cookies.set({
+        name: "userFirstName",
+        value: userFirstName,
+        expires: expirationDate,
+        path: "/",
+    });
+    apiResponse.cookies.set({
+        name: "userLastName",
+        value: userLastName,
         expires: expirationDate,
         path: "/",
     });

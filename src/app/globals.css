@@ -52,6 +52,10 @@ label {
   @apply bg-kariera-red text-kariera-white hover:outline-kariera-red active:outline-kariera-red active:bg-kariera-white active:text-kariera-red
 }
 
+#searchBox {
+  @apply bg-kariera-white-light dark:bg-kariera-white-dark
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;

@@ -1,66 +1,11 @@
 "use client";
 import Spinner from "@/components/Spinner/Spinner";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
 import {useState} from "react";
-import {Cookies, useCookies} from "next-client-cookies";
-import JobBox from "@/components/JobBox/JobBox";
+import {useCookies} from "next-client-cookies";
 import JobBoxSkeleton from "@/components/JobBox/JobBoxSkeleton";
-
-/**
- * Creates an array of JobBoxes and fills them with job info from input array.
- * @param jobs {Array}
- */
-const populateJobBoxes = (jobs: Array) => {
-    const jobBoxes: Array<typeof JobBox> = [];
-    jobs.forEach(job => {
-        jobBoxes.push(JobBox(job));
-    });
-    return jobBoxes;
-}
-
-
-/**
- * Retrieve job posts from server to display them in UI
- * @param cookies {Cookies} The cookies provided by next-client-cookies
- * @param page {number} The page number the user is currently scrolled to.
- * @returns {JobBox[] | null} Retrieved jobs in JobBox component array form from populateJobBoxes().
- */
-const fetchJobs = async (cookies: Cookies, page: number) => {
-    const config = {
-        url: `/api/jobs/all`,
-        method: 'post',
-        headers: {
-            'Content-Type': 'application/json',
-            "Authorization": `Bearer ${cookies.get('token')}`
-        },
-        data: {
-            page: page,
-            sizePerPage: 5,
-        },
-    }
-    // Make axios request to api and get the job posts.
-    try {
-        let apiResponse = await axios(config);
-        if (apiResponse.status === 200) {
-            // If apiResponse is empty array, then return [] and don't try to populate jobBoxes.
-            if (apiResponse.data.items.length !== 0) {
-                return populateJobBoxes(apiResponse.data.items);
-            } else {
-                return null;
-            }
-        } else {
-            // If response status is 400, then pop up login modal, means auth was not successful.
-            // This either means auth token has expired or not valid.
-            document.location.href = "/login";
-            return null;
-        }
-    } catch (error) {
-        console.error(error);
-        return null;
-    }
-};
-
+import fetchJobs from "@/lib/fetchJobs";
+import populateJobBoxes from "@/lib/populateJobBoxes";
 /**
  * Component for the listing of jobs retrieved from server.
  * @returns An infinite list of jobboxes that are fetched through fetchJobs()
@@ -83,7 +28,7 @@ export default function JobList(props: { initialJobs: Array<any> }) {
      */
     const updateJobPosts = async () => {
         // If fetched jobs are null, update state as to not try to fetch anymore jobs and dont update jobBoxes.
-        const fetchedJobPosts = await fetchJobs(cookies, jobPage);
+        const fetchedJobPosts = await fetchJobs(cookies, jobPage, '');
         if (!fetchedJobPosts) {
             setHasMore(false);
         } else {
