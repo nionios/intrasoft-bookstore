@@ -2,10 +2,10 @@
 import Spinner from "@/components/Spinner/Spinner";
 import InfiniteScroll from 'react-infinite-scroll-component';
 import {useState} from "react";
-import {useCookies} from "next-client-cookies";
+import JobBox from "@/components/JobBox/JobBox";
 import JobBoxSkeleton from "@/components/JobBox/JobBoxSkeleton";
 import fetchJobs from "@/lib/fetchJobs";
-import populateJobBoxes from "@/lib/populateJobBoxes";
+import {useCookies} from "next-client-cookies";
 /**
  * Component for the listing of jobs retrieved from server.
  * @returns An infinite list of jobboxes that are fetched through fetchJobs()
@@ -13,9 +13,7 @@ import populateJobBoxes from "@/lib/populateJobBoxes";
  * @param props
  * @param props.initialJobs {Array<JobBox>} An array with the initial jobs on page fetched from api.
  */
-export default function JobList(props: { initialJobs: Array<any> }) {
-    const cookies = useCookies();
-    const [jobBoxes, setJobPosts_] = useState(populateJobBoxes(props.initialJobs));
+export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBoxUpdate : Function }) {
     // hasMore is needed to stop querying the server for job posts once all the available jobs are displayed.
     const [hasMore, setHasMore] = useState(true);
     /**
@@ -23,16 +21,18 @@ export default function JobList(props: { initialJobs: Array<any> }) {
      */
     const [jobPage, setJobPage] = useState(2);
 
+    const cookies = useCookies();
     /**
      * Wrapper around setJobPosts_ that calls fetchJobs and pushes results to already fetched jobs.
      */
     const updateJobPosts = async () => {
-        // If fetched jobs are null, update state as to not try to fetch anymore jobs and dont update jobBoxes.
+        // If fetched jobs are null, update state as to not try to fetch anymore jobs and don't update jobBoxes.
         const fetchedJobPosts = await fetchJobs(cookies, jobPage, '');
         if (!fetchedJobPosts) {
             setHasMore(false);
         } else {
-            setJobPosts_(jobBoxes => [...jobBoxes, fetchedJobPosts]);
+            const prevJobBoxes = props.jobBoxes;
+            props.onJobBoxUpdate(prevJobBoxes => [...prevJobBoxes, fetchedJobPosts]);
             // Increment the job page by 1 every time jobs are fetched.
             setJobPage(jobPage + 1);
         }
@@ -43,21 +43,12 @@ export default function JobList(props: { initialJobs: Array<any> }) {
      */
     const resetAndUpdateJobPosts = async () => {
         setJobPage(1);
-        updateJobPosts();
-    }
-
-    /*
-     * Function to reset the variables in order to re-render list.
-     * @returns {void}
-     */
-    const resetVariables = () : void => {
-        setHasMore(true);
-        setJobPage(1);
+        await updateJobPosts();
     }
 
     return (
         <InfiniteScroll
-            dataLength={jobBoxes.length} //This is important field to render the next data
+            dataLength={props.jobBoxes.length} //This is important field to render the next data
             next={updateJobPosts}
             pullDownToRefresh={true}
             pullDownToRefreshThreshold={50}
@@ -80,7 +71,7 @@ export default function JobList(props: { initialJobs: Array<any> }) {
                     </p>
             }>
             <ul role="list">
-                {jobBoxes}
+                {props.jobBoxes}
             </ul>
         </InfiniteScroll>
     );

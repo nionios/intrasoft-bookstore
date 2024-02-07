@@ -1,10 +1,10 @@
 import {UserInfo} from "@/types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons'
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import {useEffect, useState} from "react";
 import fetchJobs from "@/lib/fetchJobs";
-import {cookies} from "next/headers";
 import {useCookies} from "next-client-cookies";
+import populateJobBoxes from "@/lib/populateJobBoxes";
 
 /**
  * Search box also containing user info on homepage.
@@ -13,18 +13,18 @@ import {useCookies} from "next-client-cookies";
  * @param props.userInfo {UserInfos} - A UserInfo object with the user's personal info from endpoint
  * @constructor
  */
-export default function UserSearchBox(props: { userInfo: UserInfo }) {
+export default function UserSearchBox(props: { userInfo: UserInfo, onJobBoxUpdate : Function}) {
     const [keyword, setKeyword] = useState('');
     const cookies = useCookies();
     // Search jobs when user stops typing for x ms. (Timeout as to not repeat search while user types)
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
-            // On the end of the timeout, make the search to server
-            fetchJobs(cookies, 1, keyword, 25);
+            // On the end of the timeout, make the search to server and pass the results to parent <Feed/>
+            props.onJobBoxUpdate(fetchJobs(cookies, 1, keyword, 25));
         }, 1000)
         // Always clear timeout on useEffect.
         return () => clearTimeout(delayDebounceFn)
-    }, [keyword]);
+    }, [cookies, keyword, props]);
 
     return (
         <div id="searchBox"
@@ -33,10 +33,10 @@ export default function UserSearchBox(props: { userInfo: UserInfo }) {
                 Hello,
             </div>
             <div className="text-lg">
-                {props.userInfo.userFirstName?.value} {props.userInfo.userLastName?.value}
+                {props.userInfo.userFirstName} {props.userInfo.userLastName}
             </div>
             <div className="text-sm">
-                {props.userInfo.userEmail?.value}
+                {props.userInfo.userEmail}
             </div>
             <hr className="h-px my-8 bg-gray-200 border-0 dark:bg-gray-700"/>
             <div>
