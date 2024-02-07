@@ -5,7 +5,7 @@ import axios from "axios";
  * @param token {string} The token string
  * @throws Error when user is not authorized or there is a server error
  */
-const preFetchJobs = async (token: string): Promise<Array<any>> => {
+const preFetchAllJobs = async (token: string): Promise<Array<any>> => {
     const config = {
         url: `${process.env.endpointURL}/api/job-posts`,
         method: 'get',
@@ -42,4 +42,4 @@ const preFetchJobs = async (token: string): Promise<Array<any>> => {
     }
 };
 
-export default preFetchJobs;
+export default preFetchAllJobs;

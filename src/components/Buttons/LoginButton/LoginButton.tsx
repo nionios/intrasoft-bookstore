@@ -3,7 +3,7 @@ import axios from "axios";
 import {useState, useEffect} from "react";
 import ErrorAlert from "@/components/ErrorAlert/ErrorAlert";
 
-export default function SubmitButton(props: { buttonText: string }) {
+export default function LoginButton(props: { buttonText: string }) {
 
     const [errorText, setError] = useState('');
 

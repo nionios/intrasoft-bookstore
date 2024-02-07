@@ -2,7 +2,7 @@ import {UserInfo} from "@/types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
 import {useEffect, useState} from "react";
-import fetchJobs from "@/lib/fetchJobs";
+import fetchAllJobs from "@/lib/fetchAllJobs";
 import {useCookies} from "next-client-cookies";
 import populateJobBoxes from "@/lib/populateJobBoxes";
 
@@ -20,7 +20,7 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onJobBoxUpdat
     useEffect(() => {
         const delayDebounceFn = setTimeout(() => {
             // On the end of the timeout, make the search to server and pass the results to parent <Feed/>
-            props.onJobBoxUpdate(fetchJobs(cookies, 1, keyword, 25));
+            props.onJobBoxUpdate(fetchAllJobs(cookies, 1, keyword, 25));
         }, 1000)
         // Always clear timeout on useEffect.
         return () => clearTimeout(delayDebounceFn)

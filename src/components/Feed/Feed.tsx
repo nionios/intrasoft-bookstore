@@ -3,10 +3,7 @@ import React, {useState} from "react";
 import JobList from "@/components/JobList/JobList";
 import UserSearchBox from "@/components/UserSearchBox/UserSearchBox";
 import {UserInfo} from "@/types";
-import populateJobBoxes from "@/lib/populateJobBoxes";
-import {RequestCookie} from "next/dist/compiled/@edge-runtime/cookies";
 import {redirect} from "next/navigation";
-import fetchJobs from "@/lib/fetchJobs";
 import {useCookies} from "next-client-cookies";
 import JobBox from "@/components/JobBox/JobBox";
 /**
@@ -16,17 +13,17 @@ import JobBox from "@/components/JobBox/JobBox";
  */
 export default function Feed(props: {initialJobs : Array<typeof JobBox>}) {
     const cookies = useCookies();
-
+    // This is the state being updated by both children components UserSearchBox and JobList after initial prefetch.
     const [jobBoxes, setJobPosts] = useState(props.initialJobs);
 
     const handleJobBoxUpdate = (dataFromChild: Array<typeof JobBox>) => {
         // Update parent state jobBoxes with data received from child JobList.
         setJobPosts(dataFromChild);
     };
-
-    let token: RequestCookie | undefined = cookies.get('token');
+    // Get authentication token from the cookies to authenticate through api.
+    let token: string | undefined = cookies.get('token');
     let userInfo: UserInfo;
-    // If user has no authentication token, redirect to login.
+    // If user has no authentication token, redirect to log in.
     if (typeof (token) === "undefined") {
         redirect("/login");
     } else {

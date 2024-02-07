@@ -4,11 +4,11 @@ import InfiniteScroll from 'react-infinite-scroll-component';
 import {useState} from "react";
 import JobBox from "@/components/JobBox/JobBox";
 import JobBoxSkeleton from "@/components/JobBox/JobBoxSkeleton";
-import fetchJobs from "@/lib/fetchJobs";
+import fetchAllJobs from "@/lib/fetchAllJobs";
 import {useCookies} from "next-client-cookies";
 /**
  * Component for the listing of jobs retrieved from server.
- * @returns An infinite list of jobboxes that are fetched through fetchJobs()
+ * @returns An infinite list of jobboxes that are fetched through fetchAllJobs()
  * @constructor
  * @param props
  * @param props.initialJobs {Array<JobBox>} An array with the initial jobs on page fetched from api.
@@ -17,17 +17,17 @@ export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBo
     // hasMore is needed to stop querying the server for job posts once all the available jobs are displayed.
     const [hasMore, setHasMore] = useState(true);
     /**
-     * We start with page 2, since the first page is already pre-fetched when we access homepage. @see preFetchJobs()
+     * We start with page 2, since the first page is already pre-fetched when we access homepage. @see preFetchAllJobs()
      */
     const [jobPage, setJobPage] = useState(2);
 
     const cookies = useCookies();
     /**
-     * Wrapper around setJobPosts_ that calls fetchJobs and pushes results to already fetched jobs.
+     * Wrapper around setJobPosts_ that calls fetchAllJobs and pushes results to already fetched jobs.
      */
     const updateJobPosts = async () => {
         // If fetched jobs are null, update state as to not try to fetch anymore jobs and don't update jobBoxes.
-        const fetchedJobPosts = await fetchJobs(cookies, jobPage, '');
+        const fetchedJobPosts = await fetchAllJobs(cookies, jobPage, '');
         if (!fetchedJobPosts) {
             setHasMore(false);
         } else {

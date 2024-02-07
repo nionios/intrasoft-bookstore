@@ -1,5 +1,5 @@
 import Feed from "@/components/Feed/Feed";
-import preFetchJobs from "@/lib/preFetchJobs";
+import preFetchAllJobs from "@/lib/preFetchAllJobs";
 import {cookies} from 'next/headers'
 import {RequestCookie} from "next/dist/compiled/@edge-runtime/cookies";
 import {redirect} from "next/navigation";
@@ -21,7 +21,7 @@ export default async function Home(): Promise<JSX.Element> {
     }
     return (
         <main className="flex min-h-max flex-col items-center justify-between pt-16">
-            <Feed initialJobs={populateJobBoxes(await preFetchJobs(token?.value))}/>
+            <Feed initialJobs={populateJobBoxes(await preFetchAllJobs(token?.value))}/>
         </main>
     );
 }

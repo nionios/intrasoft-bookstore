@@ -9,7 +9,7 @@ import populateJobBoxes from "@/lib/populateJobBoxes";
  * @param resultSize {number} Number of results maximum - Default is 5.
  * @returns {JobBox[] | null} Retrieved jobs in JobBox component array form from populateJobBoxes().
  */
-const fetchJobs = async (cookies: Cookies, page: number, query: string, resultSize: number = 5) => {
+const fetchAllJobs = async (cookies: Cookies, page: number, query: string, resultSize: number = 5) => {
     const config = {
         url: `/api/jobs/all`,
         method: 'post',
@@ -45,4 +45,4 @@ const fetchJobs = async (cookies: Cookies, page: number, query: string, resultSi
     }
 };
 
-export default fetchJobs;
+export default fetchAllJobs;
