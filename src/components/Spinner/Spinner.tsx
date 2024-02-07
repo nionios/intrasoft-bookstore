@@ -10,7 +10,7 @@ export default function Spinner() {
         <div className="flex text-sm justify-center spinner">
             <Image src={loader}
                    alt="Spinner"/>
-            <span className="pl-5 spinner-text"> loading more jobs </span>
+            <span className="pl-5 spinner-text"> Loading more jobs... </span>
         </div>
     );
 }
