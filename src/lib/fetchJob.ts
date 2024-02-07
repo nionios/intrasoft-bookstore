@@ -4,7 +4,7 @@ import JobBoxDetailed from "@/components/JobBox/JobBoxDetailed";
  * Retrieve specific job post from server to display it in UI
  * @param token {string} The bearer token for authentication
  * @param id {number} The id of the job
- * @returns {JobBoxDetailed | null} Retrieved job in JobBox component.
+ * @returns {JobBoxDetailed | null} Retrieved job in JobBoxDetailed component.
  */
 const fetchJob = async (token: string, id: number) => {
     const config = {

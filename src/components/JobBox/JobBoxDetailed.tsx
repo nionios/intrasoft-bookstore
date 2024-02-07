@@ -25,13 +25,13 @@ export default function JobBoxDetailed(props: {
     const createdAtHumanDate = new Date(props.createdAt).toDateString().substring(4, 10);
     const validUntilHumanDate = new Date(props.validUntil).toDateString().substring(4, 10);
 
-    /* In production we would check if job post is valid by comparing epochs and if it was not, we would not
-     * display the jobbox by returning null on expired job post. But no valid posts exist in endpoint
-     * const todaysEpoch = (new Date(2010, 6, 26).getTime() / 1000); */
+    /* In production we could check if job post is valid by comparing epochs and if it was not, we would not
+     * display the jobbox in homepage by returning null on expired job post. But no valid posts exist in endpoint! */
     /*
-    if ( todaysEpoch - props.validUntil < 0) {
-        return null;
-    }
+       const todaysEpoch = (new Date(2010, 6, 26).getTime() / 1000);
+       if ( todaysEpoch - props.validUntil < 0) {
+          return null;
+        }
     */
 
     return (

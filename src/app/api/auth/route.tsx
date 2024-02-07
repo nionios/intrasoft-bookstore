@@ -2,7 +2,7 @@ import {NextRequest, NextResponse} from "next/server";
 import axios from "axios";
 
 /**
- * API to call endpoint to login usesr and get JWT token, which is then stored in cookies with response.
+ * API to call endpoint to login uses and get JWT token, which is then stored in cookies with response.
  * @param request {NextRequest}
  * @constructor
  * @returns apiResponse {NextResponse}

@@ -11,7 +11,7 @@ import JobBoxDetailed from "@/components/JobBox/JobBoxDetailed";
  */
 export default function JobApplicationForm(props: { retrievedJobBox: typeof JobBoxDetailed }) {
     return (
-        <div className="flex min-h-full flex-col justify-center px-6 py-3 lg:px-8">
+        <div className="max-w-3xl flex min-h-full flex-col justify-center px-6 py-3 lg:px-8 sm:mx-auto mx-0">
             <form id="applyForm"
                   className="space-y-6">
                 {props.retrievedJobBox}

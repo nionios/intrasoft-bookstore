@@ -2,6 +2,11 @@ import {NextRequest, NextResponse} from "next/server";
 import retrieveJWT from "@/lib/retrieveJWT";
 import axios from "axios";
 
+/**
+ * API route to query endpoint for job posts.
+ * @param request {NextRequest}
+ * @constructor
+ */
 export async function POST(request: NextRequest) {
     const body = await request.json();
 

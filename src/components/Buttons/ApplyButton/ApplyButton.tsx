@@ -3,11 +3,21 @@ import axios from "axios";
 import {useState, useEffect} from "react";
 import ErrorAlert from "@/components/ErrorAlert/ErrorAlert";
 
+/**
+ * A button that makes an POST request to API, which then POSTs the application to the endpoint.
+ * @param props
+ * @constructor
+ */
 export default function ApplyButton(props: { buttonText: string }) {
 
     const [errorText, setError] = useState('');
 
     const submitFunction = () => {
+        // If user has not filled the required field yearsOfExperience, do not try to submit form.
+        if (document.getElementById('yearsOfExperience').value === '') {
+            setError("Please fill all required fields.");
+            return false;
+        }
         const config = {
             url: '/api/apply',
             method: 'post',
@@ -28,10 +38,15 @@ export default function ApplyButton(props: { buttonText: string }) {
                         document.location.href = '/login';
                         break;
                     case 409:
+                        // Job Post has expired.
                         setError("This job post is not valid at this time.");
                         break;
-                    case 404:
                     case 422:
+                        // User has applied without all the required fields.
+                        setError("Please fill all required fields.");
+                        break;
+                        // Most likely a problem with the endpoint or the server.
+                    case 404:
                     default:
                         setError("Server Error, please try again later.");
                         break;
