@@ -14,44 +14,50 @@ export default function ApplyButton(props: { buttonText: string }) {
 
     const submitFunction = () => {
         // If user has not filled the required field yearsOfExperience, do not try to submit form.
-        if (document.getElementById('yearsOfExperience').value === '') {
+        if ( (document.getElementById('yearsOfExperience') as HTMLInputElement)?.value === '') {
             setError("Please fill all required fields.");
             return false;
         }
-        const config = {
-            url: '/api/apply',
-            method: 'post',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            data: new FormData(document.getElementById('applyForm'))
-        }
-        axios(config)
-            .then((response) => {
-                // If all is well go to success page.
-                document.location.href = '/success';
-            })
-            .catch((error) => {
-                switch (error.response.status) {
-                    case 401:
-                        // If user is not authenticated send them back to /login.
-                        document.location.href = '/login';
-                        break;
-                    case 409:
-                        // Job Post has expired.
-                        setError("This job post is not valid at this time.");
-                        break;
-                    case 422:
-                        // User has applied without all the required fields.
-                        setError("Please fill all required fields.");
-                        break;
+        const applyFormElement = document.getElementById('applyForm');
+        if (applyFormElement === null) {
+            setError("Server Error, please try again later");
+            return false;
+        } else {
+            const config = {
+                url: '/api/apply',
+                method: 'post',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                data: new FormData(applyFormElement as HTMLFormElement)
+            }
+            axios(config)
+                .then((response) => {
+                    // If all is well go to success page.
+                    document.location.href = '/success';
+                })
+                .catch((error) => {
+                    switch (error.response.status) {
+                        case 401:
+                            // If user is not authenticated send them back to /login.
+                            document.location.href = '/login';
+                            break;
+                        case 409:
+                            // Job Post has expired.
+                            setError("This job post is not valid at this time.");
+                            break;
+                        case 422:
+                            // User has applied without all the required fields.
+                            setError("Please fill all required fields.");
+                            break;
                         // Most likely a problem with the endpoint or the server.
-                    case 404:
-                    default:
-                        setError("Server Error, please try again later.");
-                        break;
-                }
-            });
+                        case 404:
+                        default:
+                            setError("Server Error, please try again later.");
+                            break;
+                    }
+                });
+        }
     };
 
     return (

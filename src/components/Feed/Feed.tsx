@@ -2,7 +2,7 @@
 import React, {useState} from "react";
 import JobList from "@/components/JobList/JobList";
 import UserSearchBox from "@/components/UserSearchBox/UserSearchBox";
-import {UserInfo} from "@/types";
+import {JobBoxType, UserInfo} from "@/types";
 import {redirect} from "next/navigation";
 import {useCookies} from "next-client-cookies";
 import JobBox from "@/components/JobBox/JobBox";
@@ -11,12 +11,12 @@ import JobBox from "@/components/JobBox/JobBox";
  * @constructor
  * @returns Feed of jobs
  */
-export default function Feed(props: {initialJobs : Array<typeof JobBox>}) {
+export default function Feed(props: {initialJobs : Array<JobBoxType>}) {
     const cookies = useCookies();
     // This is the state being updated by both children components UserSearchBox and JobList after initial prefetch.
     const [jobBoxes, setJobPosts] = useState(props.initialJobs);
 
-    const handleJobBoxUpdate = (dataFromChild: Array<typeof JobBox>) => {
+    const handleJobBoxUpdate = (dataFromChild: Array<JobBoxType>) => {
         // Update parent state jobBoxes with data received from child JobList.
         setJobPosts(dataFromChild);
     };

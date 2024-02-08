@@ -48,12 +48,16 @@ const config: Config = {
             animation: {
                 fade: 'fade 500ms ease-in-out',
             },
-            keyframes: theme => ({
+            keyframes  : {
                 fade: {
-                    '0%': {opacity: 0},
-                    '100%': {opacity: 1},
+                    '0%': {
+                        opacity: '0'
+                    },
+                    '100%': {
+                        opacity: '1'
+                    },
                 },
-            }),
+            },
         },
     },
     plugins: [

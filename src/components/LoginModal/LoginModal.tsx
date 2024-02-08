@@ -14,7 +14,7 @@ export default function LoginModal() {
         document.body.style.overflow = "hidden"
     });
     return (
-        <div className="relative z-10 duration-1000"
+        <div className="relative z-40 duration-1000"
              aria-labelledby="modal-title"
              role="dialog"
              aria-modal="true">

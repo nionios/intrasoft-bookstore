@@ -19,9 +19,17 @@ export default async function Home(): Promise<JSX.Element> {
     if (typeof (token) === "undefined") {
         redirect("/login");
     }
+    let initialJobs;
+    try {
+        // These are the jobs the user first sees upon navigation to the homepage.
+        initialJobs = await preFetchAllJobs(token?.value);
+    } catch (error : any) {
+        // If errors exist, go back to login page.
+        redirect("/login");
+    }
     return (
         <main className="flex min-h-max flex-col items-center justify-between pt-16">
-            <Feed initialJobs={populateJobBoxes(await preFetchAllJobs(token?.value))}/>
+            <Feed initialJobs={populateJobBoxes(initialJobs)}/>
         </main>
     );
 }

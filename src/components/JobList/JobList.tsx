@@ -1,12 +1,12 @@
 "use client";
 import Spinner from "@/components/Spinner/Spinner";
 import InfiniteScroll from 'react-infinite-scroll-component';
-import {useState} from "react";
-import JobBox from "@/components/JobBox/JobBox";
+import {ReactNode, useState} from "react";
 import JobBoxSkeleton from "@/components/JobBox/JobBoxSkeleton";
 import fetchAllJobs from "@/lib/fetchAllJobs";
 import {useCookies} from "next-client-cookies";
 import isIterable from "@/lib/isIterable";
+import {JobBoxType} from "@/types";
 
 /**
  * Component for the listing of jobs retrieved from server.
@@ -15,7 +15,7 @@ import isIterable from "@/lib/isIterable";
  * @param props
  * @param props.initialJobs {Array<JobBox>} An array with the initial jobs on page fetched from api.
  */
-export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBoxUpdate : Function }) {
+export default function JobList(props: { jobBoxes: Array<JobBoxType>, onJobBoxUpdate : Function }) {
     // hasMore is needed to stop querying the server for job posts once all the available jobs are displayed.
     const [hasMore, setHasMore] = useState(true);
     /**
@@ -33,11 +33,11 @@ export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBo
         if (!fetchedJobPosts) {
             setHasMore(false);
         } else {
-            const prevJobBoxes = props.jobBoxes;
+            const prevJobBoxes : JobBoxType[] = props.jobBoxes;
             // Check whether previous job boxes exist. If they do, then add the new ones after them.
             // Else, just set JobBoxes parent state with the new projects only.
             if (isIterable(prevJobBoxes)) {
-                props.onJobBoxUpdate(prevJobBoxes => [...prevJobBoxes, fetchedJobPosts]);
+                props.onJobBoxUpdate([...prevJobBoxes, fetchedJobPosts]);
             } else {
                 props.onJobBoxUpdate(fetchedJobPosts);
             }
@@ -79,7 +79,7 @@ export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBo
                     </p>
             }>
             <ul role="list">
-                {props.jobBoxes}
+                {props.jobBoxes as ReactNode}
             </ul>
         </InfiniteScroll>
     );

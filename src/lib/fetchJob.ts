@@ -1,4 +1,5 @@
 import axios from 'axios';
+import type {JobBoxDetailedType} from "@/types";
 import JobBoxDetailed from "@/components/JobBox/JobBoxDetailed";
 /**
  * Retrieve specific job post from server to display it in UI
@@ -6,7 +7,7 @@ import JobBoxDetailed from "@/components/JobBox/JobBoxDetailed";
  * @param id {number} The id of the job
  * @returns {JobBoxDetailed | null} Retrieved job in JobBoxDetailed component.
  */
-const fetchJob = async (token: string, id: number) => {
+const fetchJob = async (token: string, id: number): Promise<JobBoxDetailedType | null> => {
     const config = {
         url: `${process.env.endpointURL}/api/job-posts/${id}`,
         method: 'get',

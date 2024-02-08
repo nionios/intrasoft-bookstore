@@ -1,9 +1,41 @@
+"use client";
 import LoginButton from "@/components/Buttons/LoginButton/LoginButton";
 import KarieraLogo from "@/components/KarieraLogo/KarieraLogo";
+import {FormEvent, useState} from "react";
+import axios from "axios";
+import ErrorAlert from "@/components/ErrorAlert/ErrorAlert";
 
 export default function LoginForm () {
+    const [errorText, setError] = useState('');
+
+    const submitFunction = (event: FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        const config = {
+            url: '/api/auth',
+            method: 'post',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data: new FormData(event.currentTarget)
+        }
+        axios(config)
+            .then((response) => {
+                if (response.data.authFail) {
+                    setError("Wrong Password and/or Email.");
+                } else if (response.status === 200) {
+                    document.location.href = '/home';
+                } else {
+                    setError("Server Error, please try again later.");
+                }
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+
     return (
-        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8">
+        <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 z-50">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm">
                 <KarieraLogo isMobile={false}/>
                 <h2 className="mt-10 text-center text-xl font-bold leading-9 tracking-tight text-gray-900">
@@ -15,6 +47,7 @@ export default function LoginForm () {
             </div>
             <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form id="loginForm"
+                      onSubmit={submitFunction}
                       className="space-y-6">
                     <div>
                     <label htmlFor="email"
@@ -45,6 +78,7 @@ export default function LoginForm () {
                         </div>
                     </div>
                     <div>
+                        {errorText === '' ? null : <ErrorAlert errorText={errorText}/>}
                         <LoginButton buttonText="Log In"/>
                     </div>
                 </form>

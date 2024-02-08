@@ -1,7 +1,6 @@
 import {NextRequest, NextResponse} from "next/server";
 import retrieveJWT from "@/lib/retrieveJWT";
 import axios from "axios";
-
 /**
  * Api route for applications to endpoint
  * @param request
@@ -26,7 +25,7 @@ export async function POST(request: NextRequest) {
     let endpointResponse;
     try {
         endpointResponse = await axios(config);
-    } catch (error) {
+    } catch (error : any) {
         if (error.response?.status) {
             return NextResponse.json({}, {status: error.response.status});
         } else {

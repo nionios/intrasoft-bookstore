@@ -28,7 +28,7 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onJobBoxUpdat
 
     return (
         <div id="searchBox"
-             className="grid rounded-lg drop-shadow-lg w-11/12 sm:fixed relative max-w-3xl p-5 m-5 mx-10">
+             className="grid rounded-lg drop-shadow-lg w-11/12 sm:fixed relative max-w-3xl p-5 m-5 mx-10 z-30">
             <div className="text-sm">
                 Hello,
             </div>
