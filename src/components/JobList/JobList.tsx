@@ -65,7 +65,7 @@ export default function JobList(props: { jobBoxes: Array<typeof JobBox>, onJobBo
             }
             refreshFunction={resetAndUpdateJobPosts}
             hasMore={hasMore}
-            className="max-w-3xl"
+            className="max-w-3xl mt-0 sm:mt-60 z-10"
             loader={
                 <>
                     <JobBoxSkeleton/>
