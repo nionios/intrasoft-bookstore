@@ -1,5 +1,5 @@
 "use client";
-import LoginButton from "@/components/Buttons/LoginButton/LoginButton";
+import SubmitButton from "@/components/Buttons/SubmitButton/SubmitButton";
 import KarieraLogo from "@/components/KarieraLogo/KarieraLogo";
 import {FormEvent, useState} from "react";
 import axios from "axios";
@@ -79,7 +79,7 @@ export default function LoginForm () {
                     </div>
                     <div>
                         {errorText === '' ? null : <ErrorAlert errorText={errorText}/>}
-                        <LoginButton buttonText="Log In"/>
+                        <SubmitButton buttonText="Log In"/>
                     </div>
                 </form>
             </div>

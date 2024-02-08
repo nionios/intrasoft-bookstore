@@ -1,5 +1,5 @@
-import ApplyButton from "@/components/Buttons/ApplyButton/ApplyButton";
 import SampleInfoInputs from "@/components/SampleInfoInputs/SampleInfoInputs";
+import SubmitButton from "@/components/Buttons/SubmitButton/SubmitButton";
 
 export default function JobApplicationInput () {
     return (
@@ -30,7 +30,7 @@ export default function JobApplicationInput () {
                 <div className="text-sm">* Required Field</div>
             </div>
             <div className="mt-3">
-                <ApplyButton buttonText="Send Application"/>
+                <SubmitButton buttonText="Send Application"/>
             </div>
         </div>
     );
