@@ -8,9 +8,9 @@ export type UserInfo = {
 }
 
 /**
- * The type of the JobBoxes
+ * The type of the BookBoxes
  */
-export type JobBoxType = {
+export type BookBoxType = {
     props: {
         id: number;
         companyName: string;
@@ -23,7 +23,7 @@ export type JobBoxType = {
 }
 
 /*
- * This is different from JobBoxType only because in the future its attributes may change.
+ * This is different from BookBoxType only because in the future its attributes may change.
  * If they do, the attributes may change here without too much refactoring.
  */
-export type JobBoxDetailedType = JobBoxType;
+export type BookBoxDetailedType = BookBoxType;

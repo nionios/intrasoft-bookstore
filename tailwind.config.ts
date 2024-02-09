@@ -9,40 +9,40 @@ const config: Config = {
     theme: {
         extend: {
             colors: {
-                'kariera-red': {
-                    light: "#FF2458",
-                    DEFAULT: "#FF2458",
-                    dark: "#FF2458"
+                'netcompany-blue': {
+                    light: "#0f2147",
+                    DEFAULT: "#0f2147",
+                    dark: "#0f2147"
                 },
-                'kariera-lightblue': {
+                'netcompany-lightblue': {
                     light: "#FBFAFF",
                     DEFAULT: "#FBFAFF",
                     dark: "#585275"
                 },
-                'kariera-darkblue': {
+                'netcompany-darkblue': {
                     light: "#FFFFFF",
                     DEFAULT: "#FFFFFF",
                     dark: "#282f54"
                 },
-                'kariera-white': {
+                'netcompany-white': {
                     light: "#FFFFFF",
                     DEFAULT: "#FFFFFF",
                     dark: "#333852"
                 },
-                'kariera-gray': {
+                'netcompany-gray': {
                     light: "#3E4B5E",
                     DEFAULT: "#3E4B5E",
                     dark: "#91aed9"
                 },
-                'kariera-lightgray': {
+                'netcompany-lightgray': {
                     light: "#F0EDFF",
                     DEFAULT: "#F0EDFF",
                     dark: "#535357"
                 },
-                'kariera-accent': {
+                'netcompany-accent': {
                     light: "#FBFAFF",
                     DEFAULT: "#FBFAFF",
-                    dark: "#585275"
+                    dark: "#0f2147"
                 },
             },
             animation: {

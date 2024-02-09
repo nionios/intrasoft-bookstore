@@ -5,7 +5,7 @@ import DetailBox from "@/components/DetailBox/DetailBox";
  * @param props
  * @param props.createdAtHumanDate {string} Date string of posting formatted
  * @param props.validUntilHumanDate {string} Date string of expiration formatted.
- * @param props.address {string} The location of the job.
+ * @param props.address {string} The location of the book.
  * @constructor
  */
 export default function DetailBoxBar(props : {createdAtHumanDate: string, validUntilHumanDate: string, address: string}) {

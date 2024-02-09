@@ -19,41 +19,41 @@
 body {
   color: rgb(var(--foreground-rgb));
   height: 1000px;
-  @apply bg-kariera-lightblue dark:bg-kariera-lightblue-dark
+  @apply bg-netcompany-lightblue dark:bg-netcompany-lightblue-dark
 }
 
 .btn-submit,
 nav {
-  @apply bg-kariera-darkblue dark:bg-kariera-darkblue-dark
+  @apply bg-netcompany-darkblue dark:bg-netcompany-darkblue-dark
 }
 
 .karieraLogoText {
-  @apply fill-kariera-darkblue-dark dark:fill-kariera-darkblue-light
+  @apply fill-netcompany-darkblue-dark dark:fill-netcompany-darkblue-light
 }
 
 h1, h2, h3 ,h4,
 label {
-  @apply text-kariera-gray-light dark:text-kariera-gray-dark
+  @apply text-netcompany-gray-light dark:text-netcompany-gray-dark
 }
 
-.job-post {
-  @apply bg-kariera-white-light dark:bg-kariera-white-dark
+.book-entry {
+  @apply bg-netcompany-white-light dark:bg-netcompany-white-dark
 }
 
-.kariera-accent {
-  @apply bg-kariera-accent dark:bg-kariera-accent-dark
+.netcompany-accent {
+  @apply bg-netcompany-accent dark:bg-netcompany-accent-dark
 }
 
-.kariera-accent-border {
-  @apply border-kariera-lightgray dark:border-kariera-lightgray-dark
+.netcompany-accent-border {
+  @apply border-netcompany-lightgray dark:border-netcompany-lightgray-dark
 }
 
 .btn-red {
-  @apply bg-kariera-red text-kariera-white hover:outline-kariera-red active:outline-kariera-red active:bg-kariera-white active:text-kariera-red
+  @apply bg-netcompany-blue text-netcompany-white hover:outline-netcompany-blue active:outline-netcompany-blue active:bg-netcompany-white active:text-netcompany-blue
 }
 
 #searchBox {
-  @apply bg-kariera-white-light dark:bg-kariera-white-dark
+  @apply bg-netcompany-white-light dark:bg-netcompany-white-dark
 }
 
 @layer utilities {
@@ -82,7 +82,7 @@ nav {
 
 /* Kariera.gr Brand Colors */
 .bg-secondary-brand-color {
-  @apply bg-kariera-red
+  @apply bg-netcompany-blue
 }
 .grey-violet-brand-color {
   color: #B4B2BF;

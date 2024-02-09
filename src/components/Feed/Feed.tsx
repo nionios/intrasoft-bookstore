@@ -1,24 +1,24 @@
 "use client";
 import React, {useState} from "react";
-import JobList from "@/components/JobList/JobList";
+import BookList from "@/components/BookList/BookList";
 import UserSearchBox from "@/components/UserSearchBox/UserSearchBox";
-import {JobBoxType, UserInfo} from "@/types";
+import {BookBoxType, UserInfo} from "@/types";
 import {redirect} from "next/navigation";
 import {useCookies} from "next-client-cookies";
-import JobBox from "@/components/JobBox/JobBox";
+import BookBox from "@/components/BookBox/BookBox";
 /**
- * Feed component. Features a JobList and a UserSearchBox.
+ * Feed component. Features a BookList and a UserSearchBox.
  * @constructor
- * @returns Feed of jobs
+ * @returns Feed of books
  */
-export default function Feed(props: {initialJobs : Array<JobBoxType>}) {
+export default function Feed(props: {initialBooks : Array<BookBoxType>}) {
     const cookies = useCookies();
-    // This is the state being updated by both children components UserSearchBox and JobList after initial prefetch.
-    const [jobBoxes, setJobPosts] = useState(props.initialJobs);
+    // This is the state being updated by both children components UserSearchBox and BookList after initial prefetch.
+    const [bookBoxes, setBookPosts] = useState(props.initialBooks);
 
-    const handleJobBoxUpdate = (dataFromChild: Array<JobBoxType>) => {
-        // Update parent state jobBoxes with data received from child JobList.
-        setJobPosts(dataFromChild);
+    const handleBookBoxUpdate = (dataFromChild: Array<BookBoxType>) => {
+        // Update parent state bookBoxes with data received from child BookList.
+        setBookPosts(dataFromChild);
     };
     // Get authentication token from the cookies to authenticate through api.
     let token: string | undefined = cookies.get('token');
@@ -38,9 +38,9 @@ export default function Feed(props: {initialJobs : Array<JobBoxType>}) {
     return (
         <>
             <UserSearchBox userInfo={userInfo}
-                           onJobBoxUpdate={handleJobBoxUpdate}/>
-            <JobList jobBoxes={jobBoxes}
-                     onJobBoxUpdate={handleJobBoxUpdate}/>
+                           onBookBoxUpdate={handleBookBoxUpdate}/>
+            <BookList bookBoxes={bookBoxes}
+                     onBookBoxUpdate={handleBookBoxUpdate}/>
         </>
     );
 }

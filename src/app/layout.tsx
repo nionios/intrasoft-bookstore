@@ -7,7 +7,7 @@ import {CookiesProvider} from 'next-client-cookies/server';
 const sourceSans3 = Source_Sans_3({subsets: ["latin"]});
 
 export const metadata: Metadata = {
-    title: "Kariera.gr Front End Challenge",
+    title: "Netcompany-Instrasoft Bookstore",
     description: "Made by Dionisis Nikolopoulos",
 };
 

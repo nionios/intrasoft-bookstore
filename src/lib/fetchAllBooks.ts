@@ -1,17 +1,17 @@
 import axios from 'axios';
 import {Cookies} from "next-client-cookies";
-import populateJobBoxes from "@/lib/populateJobBoxes";
+import populateBookBoxes from "@/lib/populateBookBoxes";
 /**
- * Retrieve job posts from server to display them in UI
+ * Retrieve book entries from server to display them in UI
  * @param cookies {Cookies} The cookies provided by next-client-cookies
  * @param page {number} The page number the user is currently scrolled to.
  * @param query {string} The query passed on to the endpoint in order to make searches.
  * @param resultSize {number} Number of results maximum - Default is 5.
- * @returns {JobBox[] | null} Retrieved jobs in JobBox component array form from populateJobBoxes().
+ * @returns {BookBox[] | null} Retrieved books in BookBox component array form from populateBookBoxes().
  */
-const fetchAllJobs = async (cookies: Cookies, page: number, query: string, resultSize: number = 5) => {
+const fetchAllBooks = async (cookies: Cookies, page: number, query: string, resultSize: number = 5) => {
     const config = {
-        url: `/api/jobs/all`,
+        url: `/api/books/all`,
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
@@ -23,13 +23,13 @@ const fetchAllJobs = async (cookies: Cookies, page: number, query: string, resul
             q : query,
         },
     }
-    // Make axios request to api and get the job posts.
+    // Make axios request to api and get the book entries.
     try {
         let apiResponse = await axios(config);
         if (apiResponse.status === 200) {
-            // If apiResponse is empty array, then return [] and don't try to populate jobBoxes.
+            // If apiResponse is empty array, then return [] and don't try to populate bookBoxes.
             if (apiResponse.data.items.length !== 0) {
-                return populateJobBoxes(apiResponse.data.items);
+                return populateBookBoxes(apiResponse.data.items);
             } else {
                 return null;
             }
@@ -45,4 +45,4 @@ const fetchAllJobs = async (cookies: Cookies, page: number, query: string, resul
     }
 };
 
-export default fetchAllJobs;
+export default fetchAllBooks;

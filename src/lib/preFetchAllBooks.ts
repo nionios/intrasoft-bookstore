@@ -1,14 +1,14 @@
 import axios from "axios";
 
 /**
- * Asynchronous function in order to pre-fetch jobs when first rendering the Home page
- * @returns {Array<JobBox>} An array of JobBox components.
+ * Asynchronous function in order to pre-fetch books when first rendering the Home page
+ * @returns {Array<BookBox>} An array of BookBox components.
  * @param token {string} The token string
  * @throws Error when user is not authorized or there is a server error
  */
-const preFetchAllJobs = async (token: string): Promise<Array<any>> => {
+const preFetchAllBooks = async (token: string): Promise<Array<any>> => {
         const config = {
-            url: `${process.env.endpointURL}/api/job-posts`,
+            url: `${process.env.endpointURL}/api/book-entries`,
             method: 'get',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,4 +36,4 @@ const preFetchAllJobs = async (token: string): Promise<Array<any>> => {
         }
     };
 
-export default preFetchAllJobs;
+export default preFetchAllBooks;

@@ -1,6 +1,6 @@
 import type {NextRequest} from 'next/server'
 import {NextResponse} from 'next/server'
-import retrieveJWT from "@/lib/retrieveJWT";
+import retrieveToken from "@/lib/retrieveToken";
 
 
 /**
@@ -10,7 +10,7 @@ import retrieveJWT from "@/lib/retrieveJWT";
  * @returns {NextRequest}
  */
 export async function middleware(request: NextRequest) {
-    const token = retrieveJWT(request);
+    const token = retrieveToken(request);
     // If token comes back null, then redirect to login.
     if (!token) {
         return NextResponse.redirect(new URL('/login', request.url))

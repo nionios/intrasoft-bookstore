@@ -1,17 +1,17 @@
 "use client";
 
-import type {JobBoxDetailedType} from "@/types";
+import type {BookBoxDetailedType} from "@/types";
 import {FormEvent, ReactNode, useState} from "react";
 import ErrorAlert from "@/components/ErrorAlert/ErrorAlert";
 import axios from "axios";
 
 /**
- * The application form for the job details/application page.
+ * The application form for the book details/application page.
  * @param props
- * @param props.retrievedJobBox {typeof JobBoxDetailed} A Detailed Job Box component with selected job info.
+ * @param props.retrievedBookBox {typeof BookBoxDetailed} A Detailed Book Box component with selected book info.
  * @constructor
  */
-export default function JobApplicationForm(props: { retrievedJobBox: JobBoxDetailedType }) {
+export default function BookApplicationForm(props: { retrievedBookBox: BookBoxDetailedType }) {
 
     const [errorText, setError] = useState('');
 
@@ -47,8 +47,8 @@ export default function JobApplicationForm(props: { retrievedJobBox: JobBoxDetai
                             document.location.href = '/login';
                             break;
                         case 409:
-                            // Job Post has expired.
-                            setError("This job post is not valid at this time.");
+                            // Book Post has expired.
+                            setError("This book entry is not valid at this time.");
                             break;
                         case 422:
                             // User has applied without all the required fields.
@@ -69,7 +69,7 @@ export default function JobApplicationForm(props: { retrievedJobBox: JobBoxDetai
             <form id="applyForm"
                   onSubmit={submitFunction}
                   className="space-y-6">
-                {props.retrievedJobBox as unknown as ReactNode}
+                {props.retrievedBookBox as unknown as ReactNode}
                 {errorText === '' ? null : <ErrorAlert errorText={errorText}/>}
             </form>
         </div>

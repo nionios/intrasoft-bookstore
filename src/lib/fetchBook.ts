@@ -1,28 +1,28 @@
 import axios from 'axios';
-import type {JobBoxDetailedType} from "@/types";
-import JobBoxDetailed from "@/components/JobBox/JobBoxDetailed";
+import type {BookBoxDetailedType} from "@/types";
+import BookBoxDetailed from "@/components/BookBox/BookBoxDetailed";
 /**
- * Retrieve specific job post from server to display it in UI
+ * Retrieve specific book entry from server to display it in UI
  * @param token {string} The bearer token for authentication
- * @param id {number} The id of the job
- * @returns {JobBoxDetailed | null} Retrieved job in JobBoxDetailed component.
+ * @param id {number} The id of the book
+ * @returns {BookBoxDetailed | null} Retrieved book in BookBoxDetailed component.
  */
-const fetchJob = async (token: string, id: number): Promise<JobBoxDetailedType | null> => {
+const fetchBook = async (token: string, id: number): Promise<BookBoxDetailedType | null> => {
     const config = {
-        url: `${process.env.endpointURL}/api/job-posts/${id}`,
+        url: `${process.env.endpointURL}/api/book-entries/${id}`,
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
             "Authorization": `Bearer ${token}`
         },
     }
-    // Make axios request to api and get the job posts.
+    // Make axios request to api and get the book entries.
     try {
         let apiResponse = await axios(config);
         if (apiResponse.status === 200) {
-            // If apiResponse is empty array, then return [] and don't try to populate jobBoxes.
+            // If apiResponse is empty array, then return [] and don't try to populate bookBoxes.
             if (apiResponse.data.length !== 0) {
-                return JobBoxDetailed(apiResponse.data);
+                return BookBoxDetailed(apiResponse.data);
             } else {
                 return null;
             }
@@ -38,4 +38,4 @@ const fetchJob = async (token: string, id: number): Promise<JobBoxDetailedType |
     }
 };
 
-export default fetchJob;
+export default fetchBook;

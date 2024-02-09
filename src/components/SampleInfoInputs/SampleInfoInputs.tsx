@@ -1,5 +1,5 @@
 /**
- * This is just a sample of a job application page, no info is actually sent to endpoint from here.
+ * This is just a sample of a book application page, no info is actually sent to endpoint from here.
  */
 export default function SampleInfoInputs () {
     return (
@@ -71,7 +71,7 @@ export default function SampleInfoInputs () {
                                         Interest in Company
                                     </label>
                                     <p className="text-gray-500">
-                                        Get notified when a job opening by this company is posted.
+                                        Get notified when a book opening by this company is posted.
                                     </p>
                                 </div>
                             </div>
@@ -84,8 +84,8 @@ export default function SampleInfoInputs () {
                                 </div>
                                 <div className="text-sm leading-6">
                                     <label htmlFor="candidates"
-                                           className="font-medium ">Similar Jobs</label>
-                                    <p className="text-gray-500">Get notified when a similar job is a match for you</p>
+                                           className="font-medium ">Similar Books</label>
+                                    <p className="text-gray-500">Get notified when a similar book is a match for you</p>
                                 </div>
                             </div>
                         </div>

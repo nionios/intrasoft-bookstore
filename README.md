@@ -1,6 +1,6 @@
 # Kariera Front-End Challenge
 
-A job searching and application website made for the Kariera.gr front-end developer hiring challenge.
+A book searching and application website made for the Kariera.gr front-end developer hiring challenge.
 
 The website is fully functional.
 
@@ -16,10 +16,10 @@ The project features, among other things:
 
 - The new Next.js app/ router, so it uses:
     - Interception (on login modal)
-    - Dynamic routes (job/[id])
+    - Dynamic routes (book/[id])
     - The api/ routing system.
 
-- Middleware for the JWT token stored in cookies for authentication.
+- Middleware for the token stored in cookies for authentication.
 
 - An api backend, so [axios](https://axios-http.com/) requests are not made directly from the client to the endpoint,
   the endpoint api is therefore concealed from

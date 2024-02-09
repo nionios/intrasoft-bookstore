@@ -5,7 +5,7 @@ import type {NextRequest} from "next/server";
  * @param request {NextRequest} The request that triggers the middleware
  * @returns {string | null}
  */
-export default function retrieveJWT(request: NextRequest) {
+export default function retrieveToken(request: NextRequest) {
     let retrievedToken;
     if (request.cookies.has("token")) {
         retrievedToken = request.cookies.get("token")?.value;

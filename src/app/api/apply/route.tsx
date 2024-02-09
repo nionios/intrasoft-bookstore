@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import retrieveJWT from "@/lib/retrieveJWT";
+import retrieveToken from "@/lib/retrieveToken";
 import axios from "axios";
 /**
  * Api route for applications to endpoint
@@ -10,11 +10,11 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
 
     const config = {
-        url: `${process.env.endpointURL}/api/job-posts/apply`,
+        url: `${process.env.endpointURL}/api/book-entries/apply`,
         method: 'post',
         headers: {
             'Content-Type': 'application/json',
-            "Authorization": `Bearer ${retrieveJWT(request)}`
+            "Authorization": `Bearer ${retrieveToken(request)}`
         },
         data: {
             id: body.id,

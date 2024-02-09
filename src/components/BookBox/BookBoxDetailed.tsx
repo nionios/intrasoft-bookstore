@@ -1,18 +1,18 @@
 import Image from "next/image";
-import companyImage from "@/../public/jobs/company.jpg"
-import JobBoxHeading from "@/components/JobBox/JobBoxComponents/JobBoxHeading";
-import DetailBoxBar from "@/components/JobBox/JobBoxComponents/DetailBoxBar";
-import JobApplicationInput from "@/components/JobApplicationForm/JobApplicationInput";
+import companyImage from "@/../public/books/company.jpg"
+import BookBoxHeading from "@/components/BookBox/BookBoxComponents/BookBoxHeading";
+import DetailBoxBar from "@/components/BookBox/BookBoxComponents/DetailBoxBar";
+import BookApplicationInput from "@/components/BookApplicationForm/BookApplicationInput";
 // To Avoid using dangerouslySetInnerHTML. This package is safer, it uses ReactDOM.Render(),
 // dangerouslySetInnerHTML skips it completely.
 import parse from 'html-react-parser';
 
 /**
- * A JobBox that has the job description, shows up on the individual job page and not on homepage.
+ * A BookBox that has the book description, shows up on the individual book page and not on homepage.
  * @param props
  * @constructor
  */
-export default function JobBoxDetailed(props: {
+export default function BookBoxDetailed(props: {
     id: number,
     companyName: string,
     address: string,
@@ -25,8 +25,8 @@ export default function JobBoxDetailed(props: {
     const createdAtHumanDate = new Date(props.createdAt).toDateString().substring(4, 10);
     const validUntilHumanDate = new Date(props.validUntil).toDateString().substring(4, 10);
 
-    /* In production we could check if job post is valid by comparing epochs and if it was not, we would not
-     * display the jobbox in homepage by returning null on expired job post. But no valid posts exist in endpoint! */
+    /* In production we could check if book entry is valid by comparing epochs and if it was not, we would not
+     * display the bookbox in homepage by returning null on expired book entry. But no valid posts exist in endpoint! */
     /*
        const todaysEpoch = (new Date(2010, 6, 26).getTime() / 1000);
        if ( todaysEpoch - props.validUntil < 0) {
@@ -35,8 +35,8 @@ export default function JobBoxDetailed(props: {
     */
 
     return (
-        <div id={`jobPost${props.id}Details`}
-             className={`grid grid-rows-auto grid-cols-3 md:grid-cols-5 animate-fade job-post rounded-lg m-5 drop-shadow-lg gap-x-2 md:gap-x-6 p-5 gap-y-4`}>
+        <div id={`bookPost${props.id}Details`}
+             className={`grid grid-rows-auto grid-cols-3 md:grid-cols-5 animate-fade book-entry rounded-lg m-5 drop-shadow-lg gap-x-2 md:gap-x-6 p-5 gap-y-4`}>
             <div className="row-span-1 col-span-1 flex min-w-0 gap-x-1 mr-1">
                 <Image className="rounded-md shrink-0 bg-gray-50"
                        width={150}
@@ -45,7 +45,7 @@ export default function JobBoxDetailed(props: {
                        alt="An image of a company building."/>
             </div>
             <div className="row-span-1 col-span-2 md:col-span-4 min-w-0 gap-x-4">
-                <JobBoxHeading companyName={props.companyName}
+                <BookBoxHeading companyName={props.companyName}
                                title={props.title}/>
             </div>
             <div className="grid row-span-1 col-span-3 md:col-span-4 grid-cols-3 md:grid-cols-4 grid-rows-1 gap-4 content-end">
@@ -59,7 +59,7 @@ export default function JobBoxDetailed(props: {
                 </div>
             </div>
             <div className="row-span-1 col-span-full min-w-0 gap-x-4">
-                <JobApplicationInput/>
+                <BookApplicationInput/>
             </div>
         </div>
     );

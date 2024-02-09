@@ -1,11 +1,11 @@
 import SampleInfoInputs from "@/components/SampleInfoInputs/SampleInfoInputs";
 import SubmitButton from "@/components/Buttons/SubmitButton/SubmitButton";
 
-export default function JobApplicationInput () {
+export default function BookApplicationInput () {
     return (
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
             <div>
-                <input id="jobPostId"
+                <input id="bookPostId"
                        name="id"
                        type="number"
                        autoComplete="number"

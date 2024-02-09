@@ -1,26 +1,26 @@
-import JobApplicationForm from "@/components/JobApplicationForm/JobApplicationForm";
-import fetchJob from "@/lib/fetchJob";
+import BookApplicationForm from "@/components/BookApplicationForm/BookApplicationForm";
+import fetchBook from "@/lib/fetchBook";
 import {cookies} from 'next/headers'
 import {redirect} from "next/navigation";
 import Link from "next/link";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import type {JobBoxDetailedType} from "@/types";
+import type {BookBoxDetailedType} from "@/types";
 
 /**
- * This is the job application page. This should only be accessed on hard navigation.
+ * This is the book application page. This should only be accessed on hard navigation.
  * @param params
- * @param params.id - The id of the job post, url parameter.
+ * @param params.id - The id of the book entry, url parameter.
  * @constructor
  */
-export default async function JobApplicationPage({params} : any) {
-    // Get JWT token for authentication with endpoint
+export default async function BookApplicationPage({params} : any) {
+    // Get token for authentication with endpoint
     const token: string | undefined = cookies().get('token')?.value;
     // If user does not have token, redirect to login.
     if (typeof (token) === "undefined") {
         redirect("/login");
     }
-    const retrievedJobBox : JobBoxDetailedType | null  = await fetchJob(token, params.id);
+    const retrievedBookBox : BookBoxDetailedType | null  = await fetchBook(token, params.id);
     return (
         <>
             <Link href="/home"
@@ -31,7 +31,7 @@ export default async function JobApplicationPage({params} : any) {
                     Back
                 </span>
             </Link>
-            {retrievedJobBox === null ? null : <JobApplicationForm retrievedJobBox={retrievedJobBox}/>}
+            {retrievedBookBox === null ? null : <BookApplicationForm retrievedBookBox={retrievedBookBox}/>}
         </>
     );
 }

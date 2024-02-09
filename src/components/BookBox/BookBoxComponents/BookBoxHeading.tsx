@@ -1,9 +1,9 @@
 /**
- * A heading for the JobBoxes displaying the company name and the title of the position offered.
+ * A heading for the BookBoxes displaying the company name and the title of the position offered.
  * @param props
  * @constructor
  */
-export default function JobBoxHeading(props: {companyName: string, title: string}) {
+export default function BookBoxHeading(props: {companyName: string, title: string}) {
     return (
         <>
             <div className="min-w-0 flex-auto">

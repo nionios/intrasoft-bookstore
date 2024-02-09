@@ -1,6 +1,6 @@
 "use client";
 import SubmitButton from "@/components/Buttons/SubmitButton/SubmitButton";
-import KarieraLogo from "@/components/KarieraLogo/KarieraLogo";
+import InstrasoftLogo from "@/components/IntrasoftLogo/InstrasoftLogo";
 import {FormEvent, useState} from "react";
 import axios from "axios";
 import ErrorAlert from "@/components/ErrorAlert/ErrorAlert";
@@ -36,8 +36,8 @@ export default function LoginForm () {
 
     return (
         <div className="flex min-h-full flex-col justify-center px-6 py-12 lg:px-8 z-50">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
-                <KarieraLogo isMobile={false}/>
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm self-center">
+                <InstrasoftLogo width="380"/>
                 <h2 className="mt-10 text-center text-xl font-bold leading-9 tracking-tight text-gray-900">
                     Welcome!
                 </h2>
