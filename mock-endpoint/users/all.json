@@ -1,0 +1,10 @@
+{
+  "users": [
+    {
+      "userEmail": "bookStoreUs3r@intrasoft.com",
+      "userPassword" : "$2a$12$8KIz4UmINSBP.IT9sy7lPOVPbE4Pu.PlUKx4cO8hpVgWuk0OV9T9W",
+      "userFirstName" : "Benjamin",
+      "userLastName": "Franklin"
+    }
+  ]
+}

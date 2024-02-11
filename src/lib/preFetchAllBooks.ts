@@ -8,8 +8,8 @@ import axios from "axios";
  */
 const preFetchAllBooks = async (token: string): Promise<Array<any>> => {
         const config = {
-            url: `${process.env.endpointURL}/api/book-entries`,
-            method: 'get',
+            url: `http://localhost:3000/api/books/all`,
+            method: 'post',
             headers: {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${token}`

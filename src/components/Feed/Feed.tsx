@@ -40,7 +40,7 @@ export default function Feed(props: {initialBooks : Array<BookBoxType>}) {
             <UserSearchBox userInfo={userInfo}
                            onBookBoxUpdate={handleBookBoxUpdate}/>
             <BookList bookBoxes={bookBoxes}
-                     onBookBoxUpdate={handleBookBoxUpdate}/>
+                      onBookBoxUpdate={handleBookBoxUpdate}/>
         </>
     );
 }

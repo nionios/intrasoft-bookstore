@@ -7,18 +7,33 @@ export type UserInfo = {
     userFirstName: string | undefined,
 }
 
+/** Type of Book */
+export type Book = {
+    isbn: string,
+    title: string,
+    subtitle: string,
+    author: string,
+    published: string,
+    publisher: string,
+    pages: number,
+    description: string,
+    website: string
+}
+
 /**
  * The type of the BookBoxes
  */
 export type BookBoxType = {
     props: {
-        id: number;
-        companyName: string;
-        address: string;
-        createdAt: number;
-        validUntil: number;
-        title: string;
-        description: string;
+        isbn: string,
+        title: string,
+        subtitle: string,
+        author: string,
+        published: string,
+        publisher: string,
+        pages: number,
+        description: string,
+        website: string
     }
 }
 

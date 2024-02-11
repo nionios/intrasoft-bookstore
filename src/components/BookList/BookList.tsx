@@ -7,6 +7,8 @@ import fetchAllBooks from "@/lib/fetchAllBooks";
 import {useCookies} from "next-client-cookies";
 import isIterable from "@/lib/isIterable";
 import {BookBoxType} from "@/types";
+import {redirect} from "next/navigation";
+import populateBookBoxes from "@/lib/populateBookBoxes";
 
 /**
  * Component for the listing of books retrieved from server.
@@ -23,13 +25,15 @@ export default function BookList(props: { bookBoxes: Array<BookBoxType>, onBookB
      */
     const [bookPage, setBookPage] = useState(2);
 
-    const cookies = useCookies();
+    const token : string | undefined = useCookies().get("token");
+    // Redirect to login if token does not exist.
+    if (token === undefined) redirect('/login');
     /**
      * Wrapper around setBookPosts_ that calls fetchAllBooks and pushes results to already fetched books.
      */
     const updateBookPosts = async () => {
         // If fetched books are null, update state as to not try to fetch anymore books and don't update bookBoxes.
-        const fetchedBookPosts = await fetchAllBooks(cookies, bookPage, '');
+        const fetchedBookPosts : BookBoxType[] = populateBookBoxes(await fetchAllBooks(token, bookPage, ''));
         if (!fetchedBookPosts) {
             setHasMore(false);
         } else {
