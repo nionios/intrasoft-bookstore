@@ -18,9 +18,9 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpda
     const cookies = useCookies();
     // Search books when user stops typing for x ms. (Timeout as to not repeat search while user types)
     useEffect(() => {
-        const delayDebounceFn = setTimeout(() => {
+        const delayDebounceFn = setTimeout(async () => {
             // On the end of the timeout, make the search to server and pass the results to parent <Feed/>
-            props.onBookBoxUpdate(fetchAllBooks(cookies, 1, keyword, 25));
+            props.onBookBoxUpdate(populateBookBoxes(await fetchAllBooks(cookies, 1, keyword, 25)));
         }, 1000)
         // Always clear timeout on useEffect.
         return () => clearTimeout(delayDebounceFn)
