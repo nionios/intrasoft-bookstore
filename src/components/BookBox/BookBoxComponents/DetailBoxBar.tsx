@@ -1,26 +1,24 @@
 import DetailBox from "@/components/DetailBox/DetailBox";
+import Stars from "@/components/Stars/Stars";
 
 /**
  * @returns Three DetailBox components to be placed in a grid.
  * @param props
  * @param props.createdAtHumanDate {string} Date string of posting formatted
- * @param props.validUntilHumanDate {string} Date string of expiration formatted.
+ * @param props.publisher {string} Date string of the book's publisher.
  * @param props.address {string} The location of the book.
  * @constructor
  */
-export default function DetailBoxBar(props : {createdAtHumanDate: string, validUntilHumanDate: string, address: string}) {
+export default function DetailBoxBar(props : {createdAtHumanDate: string, publisher: string}) {
     return (<>
+
             <div className="grid col-span-1">
-                <DetailBox title="Date Posted"
+                <DetailBox title="Published"
                            subtitle={props.createdAtHumanDate}/>
             </div>
             <div className="grid col-span-1">
-                <DetailBox title="Apply Until"
-                           subtitle={props.validUntilHumanDate}/>
-            </div>
-            <div className="grid col-span-1">
-                <DetailBox title="Location"
-                           subtitle={props.address}/>
+                <DetailBox title="Publisher"
+                           subtitle={props.publisher}/>
             </div>
         </>
     );

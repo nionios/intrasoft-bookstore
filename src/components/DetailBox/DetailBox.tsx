@@ -11,7 +11,7 @@ export default function DetailBox(props: { title: string, subtitle: string }) {
             <h2 className="text-sm leading-6">
                 {props.title}
             </h2>
-            <div className="text-md leading-6 text-gray-900 sm:whitespace-nowrap">
+            <div className="text-md leading-6 text-gray-900 sm:whitespace-nowrap line-clamp-1">
                 {props.subtitle}
             </div>
         </div>
