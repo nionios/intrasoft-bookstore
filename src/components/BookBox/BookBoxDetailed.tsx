@@ -1,16 +1,17 @@
 import Image from "next/image";
 import bookImage from "@/../public/books/book.jpeg"
 import BookBoxHeading from "@/components/BookBox/BookBoxComponents/BookBoxHeading";
-import DetailBoxBar from "@/components/BookBox/BookBoxComponents/DetailBoxBar";
 import BookApplicationInput from "@/components/BookApplicationForm/BookApplicationInput";
 import {Book} from "@/types";
+import DetailBox from "@/components/DetailBox/DetailBox";
+import Link from "next/link";
 
 /**
  * A BookBox that has the book description, shows up on the individual book page and not on homepage.
  * @param props
  * @constructor
  */
-export default function BookBoxDetailed(props: {inputBook : Book}) {
+export default function BookBoxDetailed(props: { inputBook: Book }) {
     // Construct pretty dates from info shared from api.
     const createdAtHumanDate = new Date(props.inputBook.published).toDateString().substring(4, 10);
 
@@ -29,15 +30,33 @@ export default function BookBoxDetailed(props: {inputBook : Book}) {
                                 rating={3}
                                 readonly={true}
                                 title={props.inputBook.title}/>
-            </div>
-            <div className="grid row-span-1 col-span-3 md:col-span-4 grid-cols-3 md:grid-cols-4 grid-rows-1 gap-4 content-end">
-                <DetailBoxBar createdAtHumanDate={createdAtHumanDate}
-                              publisher={props.inputBook.publisher}/>
-            </div>
-            <div className="row-span-1 col-span-3 md:col-span-4 min-w-0 gap-x-4">
-                <div className="text-md font-semibold leading-6 text-gray-900 py-1">
-                    {props.inputBook.description}
+                <div className="py-1">
+                    <span className="font-bold">
+                    ISBN :&nbsp;
+                    </span>
+                    {props.inputBook.isbn}
                 </div>
+                <div className="py-1">
+                    <Link className="btn-animate btn-red px-10 py-1 rounded-full"
+                          href={props.inputBook.website}>Website</Link>
+                </div>
+            </div>
+            <div className="grid row-span-1 col-span-4 md:col-span-5 grid-cols-3 md:grid-cols-4 grid-rows-1 gap-4 content-end">
+                <DetailBox title="Author"
+                           colspan={2}
+                           subtitle={props.inputBook.author}/>
+                <DetailBox title="Publisher"
+                           colspan={2}
+                           subtitle={props.inputBook.publisher}/>
+                <DetailBox title="Published"
+                           subtitle={createdAtHumanDate}/>
+                <DetailBox title="Pages"
+                           subtitle={props.inputBook.pages.toString()}/>
+            </div>
+            <div className="row-span-1 col-span-5 min-w-0 gap-x-4">
+                <DetailBox title="Description"
+                           colspan={5}
+                           subtitle={props.inputBook.description}/>
             </div>
             <div className="row-span-1 col-span-full min-w-0 gap-x-4">
                 <BookApplicationInput/>

@@ -14,11 +14,13 @@ export default function DetailBoxBar(props : {createdAtHumanDate: string, publis
 
             <div className="grid col-span-1">
                 <DetailBox title="Published"
-                           subtitle={props.createdAtHumanDate}/>
+                           subtitle={props.createdAtHumanDate}
+                           truncated={true}/>
             </div>
             <div className="grid col-span-1">
                 <DetailBox title="Publisher"
-                           subtitle={props.publisher}/>
+                           subtitle={props.publisher}
+                           truncated={true}/>
             </div>
         </>
     );
