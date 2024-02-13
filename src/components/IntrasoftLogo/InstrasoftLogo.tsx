@@ -3,9 +3,9 @@
  * @constructor
  * @returns SVG Logo of netcompany.gr
  * @param props
- * @param props.width {string} The desired width of the logo
+ * @param props.width {number} The desired width of the logo
  */
-export default function InstrasoftLogo(props: {width : string}) {
+export default function InstrasoftLogo(props: {width : number}) {
     return (
         <svg xmlns="http://www.w3.org/2000/svg"
              width={`${props.width}`}

@@ -5,6 +5,7 @@ import {useEffect, useState} from "react";
 import fetchAllBooks from "@/lib/fetchAllBooks";
 import {useCookies} from "next-client-cookies";
 import populateBookBoxes from "@/lib/populateBookBoxes";
+import {redirect} from "next/navigation";
 
 /**
  * Search box also containing user info on homepage.
@@ -15,16 +16,20 @@ import populateBookBoxes from "@/lib/populateBookBoxes";
  */
 export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpdate : Function}) {
     const [keyword, setKeyword] = useState('');
-    const cookies = useCookies();
+    const token : string | undefined = useCookies().get("token");
+    if (token === undefined) {
+        // If token does not exist, user should authenticate again.
+        redirect('/login')
+    }
     // Search books when user stops typing for x ms. (Timeout as to not repeat search while user types)
     useEffect(() => {
         const delayDebounceFn = setTimeout(async () => {
             // On the end of the timeout, make the search to server and pass the results to parent <Feed/>
-            props.onBookBoxUpdate(populateBookBoxes(await fetchAllBooks(cookies, 1, keyword, 25)));
+            props.onBookBoxUpdate(populateBookBoxes(await fetchAllBooks(token, 1, keyword, 25)));
         }, 1000)
         // Always clear timeout on useEffect.
         return () => clearTimeout(delayDebounceFn)
-    }, [cookies, keyword]);
+    }, [token, keyword]);
 
     return (
         <div id="searchBox"

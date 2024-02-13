@@ -6,7 +6,7 @@ import BookBoxHeading from "@/components/BookBox/BookBoxComponents/BookBoxHeadin
 import {Book} from "@/types";
 
 export default function BookBox(props: {inputBook : Book}) {
-    // Construct dates from epoch shared from api.
+    // Construct pretty dates from info shared from api.
     const createdAtHumanDate = new Date(props.inputBook.published).toDateString().substring(4, 15);
 
     return (

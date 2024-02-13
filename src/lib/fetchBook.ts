@@ -4,12 +4,12 @@ import BookBoxDetailed from "@/components/BookBox/BookBoxDetailed";
 /**
  * Retrieve specific book entry from server to display it in UI
  * @param token {string} The bearer token for authentication
- * @param id {number} The id of the book
+ * @param isbn {number} The id of the book
  * @returns {BookBoxDetailed | null} Retrieved book in BookBoxDetailed component.
  */
-const fetchBook = async (token: string, id: number): Promise<BookBoxDetailedType | null> => {
+const fetchBook = async (token: string, isbn: number): Promise<BookBoxDetailedType | null> => {
     const config = {
-        url: `${process.env.endpointURL}/api/book-entries/${id}`,
+        url: `http://localhost:3000/api/books/${isbn}`,
         method: 'get',
         headers: {
             'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ const fetchBook = async (token: string, id: number): Promise<BookBoxDetailedType
         if (apiResponse.status === 200) {
             // If apiResponse is empty array, then return [] and don't try to populate bookBoxes.
             if (apiResponse.data.length !== 0) {
-                return BookBoxDetailed(apiResponse.data);
+                return BookBoxDetailed({inputBook: apiResponse.data.item});
             } else {
                 return null;
             }

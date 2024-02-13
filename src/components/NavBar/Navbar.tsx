@@ -24,7 +24,7 @@ const NavBar = () => {
             <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
                 <div className="relative flex items-center h-16 justify-between">
                     <div>
-                        <InstrasoftLogo width="100"/>
+                        <InstrasoftLogo width={100}/>
                     </div>
                     <div className="flex">
                         <div className="self-center">

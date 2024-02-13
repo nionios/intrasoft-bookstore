@@ -20,7 +20,7 @@ export default async function BookApplicationPage({params} : any) {
     if (typeof (token) === "undefined") {
         redirect("/login");
     }
-    const retrievedBookBox : BookBoxDetailedType | null  = await fetchBook(token, params.id);
+    const retrievedBookBox : BookBoxDetailedType | null  = await fetchBook(token, params.isbn);
     return (
         <>
             <Link href="/home"
