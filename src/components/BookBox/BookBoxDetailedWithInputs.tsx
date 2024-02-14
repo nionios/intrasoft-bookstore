@@ -14,14 +14,14 @@ export default function BookBoxDetailedWithInputs() {
     return (
         <div id={`bookPostCreation`}
              className={`grid grid-rows-auto grid-cols-3 md:grid-cols-5 animate-fade book-entry rounded-lg m-5 drop-shadow-lg gap-x-2 md:gap-x-6 p-5 gap-y-4`}>
-            <div className="row-span-1 col-span-5 md:col-span-1 flex gap-x-1 mr-1">
-                <Image className="rounded-md shrink-0 bg-gray-50"
-                       width={150}
+            <div className="row-span-1 col-span-5 md:col-span-2 col-span-1 flex gap-x-1 mr-1">
+                <Image className="rounded-md shadow-lg shrink-0 bg-gray-50"
+                       width={200}
                        height={150}
                        src={bookImage}
                        alt="An image of a company building."/>
             </div>
-            <div className="row-span-1 col-span-5 md:col-span-4 min-w-0 gap-x-4">
+            <div className="row-span-1 col-span-5 md:col-span-3 min-w-0 gap-x-4">
                 <BookBoxHeadingInput/>
                 <div className="py-1">
                     ISBN*: <input name="isbn"
