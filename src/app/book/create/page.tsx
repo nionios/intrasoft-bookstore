@@ -1,25 +1,23 @@
-import BookBuyApplicationForm from "@/components/BookBuyApplicationForm/BookBuyApplicationForm";
-import fetchBook from "@/lib/fetchBook";
 import {cookies} from 'next/headers'
 import {redirect} from "next/navigation";
 import Link from "next/link";
 import {faChevronLeft} from "@fortawesome/free-solid-svg-icons";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import type {BookBoxDetailedType} from "@/types";
+import BookCreateApplicationForm from "@/components/BookCreateApplicationForm/BookCreateApplicationForm";
 
 /**
- * This is the book application page. The isbn of the book is fed through the url on navigation (dynamic route)
+ * This is the book creation page.
  * @param params
+ * @param params.id - The id of the book entry, url parameter.
  * @constructor
  */
-export default async function BookBuyApplicationPage({params} : any) {
+export default async function BookCreationPage({params} : any) {
     // Get token for authentication with endpoint
     const token: string | undefined = cookies().get('token')?.value;
     // If user does not have token, redirect to login.
     if (typeof (token) === "undefined") {
         redirect("/login");
     }
-    const retrievedBookBox : BookBoxDetailedType | null  = await fetchBook(token, params.isbn);
     return (
         <>
             <Link href="/home"
@@ -30,7 +28,7 @@ export default async function BookBuyApplicationPage({params} : any) {
                     Back
                 </span>
             </Link>
-            {retrievedBookBox === null ? null : <BookBuyApplicationForm retrievedBookBox={retrievedBookBox}/>}
+            <BookCreateApplicationForm/>
         </>
     );
 }

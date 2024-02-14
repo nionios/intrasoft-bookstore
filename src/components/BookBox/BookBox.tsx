@@ -13,7 +13,7 @@ export default function BookBox(props: {inputBook : Book}) {
         <li id={`bookPost${props.inputBook.isbn}`}
             key={props.inputBook.isbn}
             className={`grid grid-rows-auto grid-cols-3 md:grid-cols-5 animate-fade book-entry rounded-lg m-5 drop-shadow-lg gap-x-2 md:gap-x-6 p-5 gap-y-4`}>
-            <div className="row-span-1 md:row-span-2 col-span-1 flex min-w-0 gap-x-1 mr-1">
+            <div className="row-span-1 md:row-span-2 col-span-1 flex min-w-0 gap-x-1 mr-1 shadow-lg">
                 <Image className="rounded-md shrink-0 bg-gray-50"
                        width={150}
                        height={150}
@@ -23,7 +23,7 @@ export default function BookBox(props: {inputBook : Book}) {
             <div className="row-span-1 col-span-2 md:col-span-4 min-w-0 gap-x-4">
                 <BookBoxHeading authorName={props.inputBook.author}
                                 title={props.inputBook.title}
-                                rating={3}
+                                rating={props.inputBook.rating}
                                 readonly={true}/>
             </div>
             <div className="grid row-span-1 col-span-3 md:col-span-4 grid-cols-3 md:grid-cols-4 grid-rows-1 gap-4 content-end">

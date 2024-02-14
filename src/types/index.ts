@@ -17,7 +17,9 @@ export type Book = {
     publisher: string,
     pages: number,
     description: string,
-    website: string
+    website: string,
+    price: number,
+    rating: number
 }
 
 /**
@@ -33,7 +35,9 @@ export type BookBoxType = {
         publisher: string,
         pages: number,
         description: string,
-        website: string
+        website: string,
+        price: number,
+        rating: number
     }
 }
 

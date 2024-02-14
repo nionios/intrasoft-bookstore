@@ -4,8 +4,8 @@
  * @constructor
  */
 export default function PriceBox(props: { price: number }) {
-    const priceString: string = props.price.toString().split(".");
-    const priceBeforeVATString: string = ((props.price * 0.76).toFixed(2)).toString().split(".");
+    const priceString: string[] = props.price.toString().split(".");
+    const priceBeforeVATString: string[] = ((props.price * 0.76).toFixed(2)).toString().split(".");
 
     return (
         <>

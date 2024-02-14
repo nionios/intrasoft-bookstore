@@ -1,7 +1,7 @@
 import Image from "next/image";
 import bookImage from "@/../public/books/book.jpeg"
 import BookBoxHeading from "@/components/BookBox/BookBoxComponents/BookBoxHeading";
-import BookApplicationInput from "@/components/BookApplicationForm/BookApplicationInput";
+import BookBuyApplicationInput from "@/components/BookBuyApplicationForm/BookBuyApplicationInput";
 import {Book} from "@/types";
 import DetailBox from "@/components/DetailBox/DetailBox";
 import Link from "next/link";
@@ -27,7 +27,7 @@ export default function BookBoxDetailed(props: { inputBook: Book }) {
             </div>
             <div className="row-span-1 col-span-2 md:col-span-4 min-w-0 gap-x-4">
                 <BookBoxHeading authorName={props.inputBook.author}
-                                rating={3}
+                                rating={props.inputBook.rating}
                                 readonly={true}
                                 title={props.inputBook.title}/>
                 <div className="py-1">
@@ -59,7 +59,10 @@ export default function BookBoxDetailed(props: { inputBook: Book }) {
                            subtitle={props.inputBook.description}/>
             </div>
             <div className="row-span-1 col-span-full min-w-0 gap-x-4">
-                <BookApplicationInput/>
+                <input value={props.inputBook.isbn}
+                       name='isbn'
+                       hidden/>
+                <BookBuyApplicationInput price={props.inputBook.price}/>
             </div>
         </div>
     );

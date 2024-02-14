@@ -4,7 +4,7 @@ import Stars from "@/components/Stars/Stars";
 const notoSerifDisplay = Noto_Serif_Display({subsets: ["latin"]});
 
 /**
- * A heading for the BookBoxes displaying the company name and the title of the position offered.
+ * A heading for the BookBoxes displaying the book author name, book title and the book rating.
  * @param props
  * @param props.authorName {string} The name of the author of the book
  * @param props.title {string} The title of the book

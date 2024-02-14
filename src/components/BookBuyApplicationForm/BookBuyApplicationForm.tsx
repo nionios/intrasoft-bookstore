@@ -11,24 +11,19 @@ import axios from "axios";
  * @param props.retrievedBookBox {typeof BookBoxDetailed} A Detailed Book Box component with selected book info.
  * @constructor
  */
-export default function BookApplicationForm(props: { retrievedBookBox: BookBoxDetailedType }) {
+export default function BookBuyApplicationForm(props: { retrievedBookBox: BookBoxDetailedType }) {
 
     const [errorText, setError] = useState('');
 
     const submitFunction = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        // If user has not filled the required field yearsOfExperience, do not try to submit form.
-        if ( (document.getElementById('yearsOfExperience') as HTMLInputElement)?.value === '') {
-            setError("Please fill all required fields.");
-            return false;
-        }
         const applyFormElement = document.getElementById('applyForm');
         if (applyFormElement === null) {
             setError("Server Error, please try again later");
             return false;
         } else {
             const config = {
-                url: '/api/apply',
+                url: '/api/books/buy',
                 method: 'post',
                 headers: {
                     'Content-Type': 'application/json'
