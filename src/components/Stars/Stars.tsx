@@ -25,7 +25,9 @@ export default function Stars(props: { rating: number, readonly: boolean }) {
 
     return (
         <>
-            <input name="rating" value={rating} hidden/>
+            <input name="rating"
+                   id="ratingInput"
+                   value={rating} hidden/>
             <Rating
                 onClick={handleRating}
                 SVGclassName="inline-block"

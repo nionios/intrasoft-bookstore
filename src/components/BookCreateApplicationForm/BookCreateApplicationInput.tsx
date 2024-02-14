@@ -10,6 +10,7 @@ export default function BookCreateApplicationInput() {
             <div className="mt-3">
                 Price *: <input name="price"
                                 className="block w-40 rounded-md border-0 py-1.5 mb-3 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                id="priceInput"
                                 type="text"
                                 pattern="([0-9]+\.?[0-9]*)"/>
                 <span className="text-sm">*Required inputs</span>

@@ -18,7 +18,7 @@ export default function BookBoxHeading(props: { authorName: string, title: strin
                 <p className="mt-1 truncate text-md leading-5 text-gray-500">
                     {props.authorName}
                 </p>
-                <p className={`text-2xl font-semibold leading-6 py-1 ${notoSerifDisplay.className}`}>
+                <p className={`text-2xl book-box-title font-semibold leading-6 py-1 ${notoSerifDisplay.className}`}>
                     {props.title}
                 </p>
                 <Stars rating={props.rating}

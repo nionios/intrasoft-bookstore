@@ -50,7 +50,7 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpda
                 </div>
             </div>
             <div className="col-span-3 md:col-span-1 grid justify-center mt-3 md:mt-0 md:justify-items-end content-center">
-                <Link className="bg-amber-400 btn-animate py-2 px-10 rounded-full w-40"
+                <Link className="btn-create bg-amber-400 btn-animate py-2 px-10 rounded-full w-40"
                       href="/book/create">Add A Book</Link>
             </div>
             <hr className="row-span-1 col-span-3 h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>

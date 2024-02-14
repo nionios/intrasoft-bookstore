@@ -31,13 +31,13 @@ export default function BookBox(props: {inputBook : Book}) {
                               publisher={props.inputBook.publisher}/>
                 <div className="hidden shrink-0 md:flex md:flex-col col-span-1 justify-end">
                     <Link href={`/book/${props.inputBook.isbn}`}
-                          className="text-sm btn-animate bg-secondary-brand-color text-white text-center rounded-lg py-2">
+                          className="btn-readmore text-sm btn-animate bg-secondary-brand-color text-white text-center rounded-lg py-2">
                          Read More
                     </Link>
                 </div>
             </div>
             <Link href={`/book/${props.inputBook.isbn}`}
-                  className="btn-animate shrink-0 grid md:hidden row-span-1 bg-secondary-brand-color rounded-lg col-span-5 mt-3 py-2 justify-center content-center text-white text-center">
+                  className="btn-readmore btn-animate shrink-0 grid md:hidden row-span-1 bg-secondary-brand-color rounded-lg col-span-5 mt-3 py-2 justify-center content-center text-white text-center">
                 Read More
             </Link>
         </li>

@@ -17,6 +17,7 @@ export default function DetailBoxInput(props: { title: string, type: string, sub
             </h2>
             <input name={props.title.toLowerCase()}
                    type={props.type}
+                   id={`${props.title.toLowerCase()}Input`}
                    max={props.max}
                    required
                    pattern={props.pattern}

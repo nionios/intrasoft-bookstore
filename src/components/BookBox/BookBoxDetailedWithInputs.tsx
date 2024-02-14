@@ -25,13 +25,15 @@ export default function BookBoxDetailedWithInputs() {
                 <BookBoxHeadingInput/>
                 <div className="py-1">
                     ISBN-10*: <input name="isbn"
-                                  required
-                                  className="block w-2/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                  type="text"
-                                  pattern="\d{10,10}"/>
+                                     id="isbnInput"
+                                     required
+                                     className="block w-2/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                     type="text"
+                                     pattern="\d{10,10}"/>
                 </div>
                 <div className="py-1">
                     Website*: <input name="website"
+                                     id="websiteInput"
                                      required
                                      className="block w-full md:w-3/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                                      type="text"/>

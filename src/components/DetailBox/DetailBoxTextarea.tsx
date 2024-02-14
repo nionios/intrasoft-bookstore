@@ -16,7 +16,7 @@ export default function DetailBoxTextarea(props: { title: string, subtitle: stri
             </h2>
             <div className={`text-md leading-6 text-gray-900 self-end`}>
                 <div className="mt-2">
-                        <textarea id={`${props.title.toLowerCase()}`}
+                        <textarea id={`${props.title.toLowerCase()}Input`}
                                   name={`${props.title.toLowerCase()}`}
                                   rows={3}
                                   maxLength={props.maxLength}
