@@ -4,8 +4,8 @@ context('Actions', () => {
   });
 
   it('Testing Infinite Scrolling', () => {
-    cy.get('#email').type('john.doe@netcompany.gr').should('have.value', 'john.doe@netcompany.gr');
-    cy.get('#password').type('Kar1era!');
+    cy.get('#email').type('bookStoreUs3r@intrasoft.com').should('have.value', 'bookStoreUs3r@intrasoft.com');
+    cy.get('#password').type('ilov3b00ks');
     cy.get('.btn-submit').click();
     cy.location('pathname').should('eq', '/home')
     cy.window().scrollTo('bottom');
