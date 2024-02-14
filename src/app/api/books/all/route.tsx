@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import bookData from "@/../mock-endpoint/books/all.json";
+import bookData from "@MOCK_DATABASE/books/all.json";
 import {Book} from "@/types";
 import isAuthenticated from "@/lib/isAuthenticated";
 

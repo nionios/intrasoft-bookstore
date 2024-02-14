@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import userData from "@/../mock-endpoint/users/all.json";
+import userData from "@MOCK_DATABASE/users/all.json";
 import bcrypt from "bcrypt";
 
 /**

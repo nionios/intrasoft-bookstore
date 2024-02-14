@@ -1,5 +1,5 @@
 import {NextRequest, NextResponse} from "next/server";
-import bookData from "@/../mock-endpoint/books/all.json"
+import bookData from "@MOCK_DATABASE/books/all.json"
 import isAuthenticated from "@/lib/isAuthenticated";
 import * as fs from "fs";
 
@@ -77,17 +77,18 @@ export async function POST(request: NextRequest) {
                     "author": body.author,
                     "published": body.published,
                     "publisher": body.publisher,
-                    "pages": body.pages,
+                    "pages": parseInt(body.pages),
                     "description": body.description,
                     "website": body.website,
-                    "price": body.price,
-                    "rating": body.rating,
+                    "price": parseFloat(body.price),
+                    "rating": parseInt(body.rating),
                 };
             // Construct a new book json for mock database.
             const newBookJson = {
-                "books": bookData["books"].push(newBook)
+                "books": [...bookData["books"], newBook]
             }
-            fs.writeFileSync("../../../../../../mock-endpoint/books/all.json", JSON.stringify(newBookJson));
+            // Write the books into the JSON, "updating" our database.
+            fs.writeFileSync("mock-endpoint/books/all.json", JSON.stringify(newBookJson));
 
             // If all checks are passed, then notify user the book is saved. Return isbn for redirection to book page.
             return NextResponse.json({isbn: body.isbn}, {status: 200});
