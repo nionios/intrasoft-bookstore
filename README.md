@@ -1,8 +1,8 @@
-# Kariera Front-End Challenge
+# Netcompany-Intrasoft Bookstore
 
-A book searching and application website made for the Kariera.gr front-end developer hiring challenge.
+A book searching and application website made for a Netcompany-Intrasoft hiring challenge.
 
-The website is fully functional.
+The website is fully functional. Most of the tasks have been implemented, including bonuses.
 
 ## Technical Specifications
 
@@ -28,3 +28,10 @@ The project features, among other things:
 - Tailwind CSS config settings so the site colors change on dark mode.
 
 - Reusable React Components, all commented thoroughly with JSDOC (in addition to TypeScript)
+
+## Website Credentials
+
+### Username
+```bookStoreUs3r@intrasoft.com```
+### Password
+```ilov3b00ks```
