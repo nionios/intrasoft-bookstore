@@ -56,7 +56,7 @@ export async function POST(request: NextRequest) {
                     );
                 }
             }
-            // Create a new book json and push it into the mock database
+            // Create a new book json and push it into the mock database, make necessary adjustments of type
             const newBook: {
                 website: string;
                 pages: number;
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
                     "published": body.published,
                     "publisher": body.publisher,
                     "pages": parseInt(body.pages),
-                    "description": body.description,
+                    "description": body.description.charAt(0).toUpperCase() + body.description.slice(1), // Capitalize first letter that might not be capitalized.
                     "website": body.website,
                     "price": parseFloat(body.price),
                     "rating": parseInt(body.rating),

@@ -24,16 +24,17 @@ export default function BookBoxDetailedWithInputs() {
             <div className="row-span-1 col-span-5 md:col-span-3 min-w-0 gap-x-4">
                 <BookBoxHeadingInput/>
                 <div className="py-1">
-                    ISBN*: <input name="isbn"
-                                 required
-                                 className="block w-2/4 md:w-1/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                 type="text"/>
+                    ISBN-10*: <input name="isbn"
+                                  required
+                                  className="block w-2/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                  type="text"
+                                  pattern="\d{10,10}"/>
                 </div>
                 <div className="py-1">
                     Website*: <input name="website"
-                                    required
-                                    className="block w-full md:w-1/2 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    type="text"/>
+                                     required
+                                     className="block w-full md:w-3/4 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                     type="text"/>
                 </div>
             </div>
             <div className="grid row-span-1 col-span-4 md:col-span-5 grid-cols-3 md:grid-cols-4 grid-rows-1 gap-4 content-end">
@@ -43,18 +44,22 @@ export default function BookBoxDetailedWithInputs() {
                                 colspan={2}/>
                 <DetailBoxInput title="Publisher"
                                 type="text"
-                                subtitle="Full Name of publisher."
+                                subtitle="Full Name of publisher. (Max: 60 characters, Min: 5)"
+                                pattern="[a-zA-Z' ]{5,60}"
                                 colspan={2}/>
                 <DetailBoxInput title="Published"
                                 subtitle="Date of publishing."
-                                type="text"/>
+                                type="text"
+                                pattern="\d{4}"/>
                 <DetailBoxInput title="Pages"
-                                subtitle="Number of pages."
-                                type="number"/>
+                                subtitle="No. of pages. (Max: 9999)"
+                                type="number"
+                                max={9999}/>
             </div>
             <div className="row-span-1 col-span-5 min-w-0 gap-x-4">
                 <DetailBoxTextarea title="Description"
                                    colspan={5}
+                                   maxLength={512}
                                    subtitle="A short description of the books contents."/>
             </div>
             <div className="row-span-1 col-span-full min-w-0 gap-x-4">

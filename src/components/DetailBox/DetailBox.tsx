@@ -13,7 +13,7 @@ export default function DetailBox(props: { title: string, subtitle: string, cols
             <h2 className="text-sm leading-6 self-start">
                 {props.title}
             </h2>
-            <div className={`text-md leading-6 text-gray-900 self-end ${props.truncated ? "line-clamp-1 sm:whitespace-nowrap" : null}`}>
+            <div className={`text-md leading-6 self-end ${props.truncated ? "line-clamp-1 sm:whitespace-nowrap" : null}`}>
                 {props.subtitle}
             </div>
         </div>
