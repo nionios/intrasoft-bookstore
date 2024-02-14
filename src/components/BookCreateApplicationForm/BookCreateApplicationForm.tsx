@@ -18,7 +18,7 @@ export default function BookCreateApplicationForm() {
 
     const submitFunction = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const applyFormElement = document.getElementById('applyForm');
+        const applyFormElement = document.getElementById('createForm');
         if (applyFormElement === null) {
             setError("Server Error, please try again later");
             return false;
@@ -33,25 +33,21 @@ export default function BookCreateApplicationForm() {
             }
             axios(config)
                 .then((response) => {
-                    // If all is well go to success page.
-                    document.location.href = '/success';
+                    // If all is well go to newly created book page.
+                    document.location.href = `/book/${response.data.isbn}`;
                 })
                 .catch((error) => {
                     switch (error.response.status) {
-                        case 401:
+                        case 400:
+                            setError("Some required inputs are missing. Please check your inputs.");
+                            break;
+                        case 403:
                             // If user is not authenticated send them back to /login.
                             document.location.href = '/login';
                             break;
                         case 409:
-                            // Book Post has expired.
-                            setError("This book entry is not valid at this time.");
+                            setError("Book with same isbn is already on database.");
                             break;
-                        case 422:
-                            // User has applied without all the required fields.
-                            setError("Please fill all required fields.");
-                            break;
-                        // Most likely a problem with the endpoint or the server.
-                        case 404:
                         default:
                             setError("Server Error, please try again later.");
                             break;
@@ -62,7 +58,7 @@ export default function BookCreateApplicationForm() {
 
     return (
         <div className="max-w-3xl flex min-h-full flex-col justify-center px-6 py-3 lg:px-8 sm:mx-auto mx-0">
-            <form id="applyForm"
+            <form id="createForm"
                   onSubmit={submitFunction}
                   className="space-y-6">
                 <BookBoxDetailedWithInputs/>

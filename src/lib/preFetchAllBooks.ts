@@ -14,7 +14,7 @@ const preFetchAllBooks = async (token: string): Promise<Array<any>> => {
                 'Content-Type': 'application/json',
                 "Authorization": `Bearer ${token}`
             },
-            params: {
+            data: {
                 page: 1,
                 sizePerPage: 10,
             },

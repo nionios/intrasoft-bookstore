@@ -2,13 +2,20 @@
 import React, {useState} from "react";
 import {Rating} from 'react-simple-star-rating'
 
+/**
+ * A Widget that sets the rating of the book in question with react-simple-star-rating and places the result on a
+ * hidden input. Can be reset with a button.
+ * @param props
+ * @param props.rating {number} The initial rating upon first render.
+ * @param props.readonly {boolean} Flag to make star rating editable or not.
+ * @constructor
+ */
 export default function Stars(props: { rating: number, readonly: boolean }) {
     const [rating, setRating] = useState(0)
 
     // Catch Rating value
     const handleRating = (rate: number) => {
         setRating(rate)
-        // other logic
     }
 
     const handleReset = () => {
@@ -16,18 +23,11 @@ export default function Stars(props: { rating: number, readonly: boolean }) {
         setRating(0)
     }
 
-    // Optional callback functions
-    const onPointerEnter = () => console.log('Enter')
-    const onPointerLeave = () => console.log('Leave')
-    const onPointerMove = (value: number, index: number) => console.log(value, index)
-
     return (
         <>
+            <input name="rating" value={rating} hidden/>
             <Rating
                 onClick={handleRating}
-                onPointerEnter={onPointerEnter}
-                onPointerLeave={onPointerLeave}
-                onPointerMove={onPointerMove}
                 SVGclassName="inline-block"
                 transition={true}
                 allowFraction={true}

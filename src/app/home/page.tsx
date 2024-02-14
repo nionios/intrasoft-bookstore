@@ -13,7 +13,7 @@ import preFetchAllBooks from "@/lib/preFetchAllBooks";
  *                             on authentication or server error during initial book entry fetch.
  */
 //TODO: error texts on redirection on /login
-export default async function Home(): Promise<JSX.Element> {
+export default async function Home() {
     const token: string | undefined = cookies().get('token')?.value;
     // If user does not have token, redirect to login.
     if (typeof (token) === "undefined") {

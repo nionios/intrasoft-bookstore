@@ -25,7 +25,7 @@ export default function Feed(props: {initialBooks : Array<BookBoxType>}) {
     let userInfo: UserInfo;
     // If user has no authentication token, redirect to log in.
     if (typeof (token) === "undefined") {
-        redirect("/login");
+        redirect("/home");
     } else {
         // Populate userInfo object with the info fetched from endpoint during or from previous login.
         userInfo = {

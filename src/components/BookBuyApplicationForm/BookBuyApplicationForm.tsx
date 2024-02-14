@@ -17,7 +17,7 @@ export default function BookBuyApplicationForm(props: { retrievedBookBox: BookBo
 
     const submitFunction = (event: FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        const applyFormElement = document.getElementById('applyForm');
+        const applyFormElement = document.getElementById('buyForm');
         if (applyFormElement === null) {
             setError("Server Error, please try again later");
             return false;
@@ -37,20 +37,12 @@ export default function BookBuyApplicationForm(props: { retrievedBookBox: BookBo
                 })
                 .catch((error) => {
                     switch (error.response.status) {
-                        case 401:
+                        case 403:
                             // If user is not authenticated send them back to /login.
                             document.location.href = '/login';
                             break;
-                        case 409:
-                            // Book Post has expired.
-                            setError("This book entry is not valid at this time.");
-                            break;
-                        case 422:
-                            // User has applied without all the required fields.
-                            setError("Please fill all required fields.");
-                            break;
                         // Most likely a problem with the endpoint or the server.
-                        case 404:
+                        case 400:
                         default:
                             setError("Server Error, please try again later.");
                             break;
@@ -61,7 +53,7 @@ export default function BookBuyApplicationForm(props: { retrievedBookBox: BookBo
 
     return (
         <div className="max-w-3xl flex min-h-full flex-col justify-center px-6 py-3 lg:px-8 sm:mx-auto mx-0">
-            <form id="applyForm"
+            <form id="buyForm"
                   onSubmit={submitFunction}
                   className="space-y-6">
                 {props.retrievedBookBox as unknown as ReactNode}

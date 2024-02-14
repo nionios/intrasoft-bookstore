@@ -1,7 +1,7 @@
-import {UserInfo} from "@/types";
+import {BookBoxType, UserInfo} from "@/types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import fetchAllBooks from "@/lib/fetchAllBooks";
 import {useCookies} from "next-client-cookies";
 import populateBookBoxes from "@/lib/populateBookBoxes";
@@ -11,7 +11,7 @@ import {redirect} from "next/navigation";
  * Search box also containing user info on homepage.
  * Gets input of user when user stops typing after timeout when onChange event of <input/> is fired.
  * @param props
- * @param props.userInfo {UserInfos} - A UserInfo object with the user's personal info from endpoint
+ * @param props.userInfo {UserInfo} A UserInfo object with the user's personal info from endpoint
  * @constructor
  */
 export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpdate : Function}) {
@@ -23,12 +23,15 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpda
     }
     // Search books when user stops typing for x ms. (Timeout as to not repeat search while user types)
     useEffect(() => {
-        const delayDebounceFn = setTimeout(async () => {
-            // On the end of the timeout, make the search to server and pass the results to parent <Feed/>
-            props.onBookBoxUpdate(populateBookBoxes(await fetchAllBooks(token, 1, keyword, 25)));
-        }, 1000)
-        // Always clear timeout on useEffect.
-        return () => clearTimeout(delayDebounceFn)
+        // Do not search on empty keyword.
+        if (keyword !== "") {
+            const delayDebounceFn = setTimeout(async () => {
+                // On the end of the timeout, make the search to server and pass the results to parent <Feed/>
+                props.onBookBoxUpdate(populateBookBoxes(await fetchAllBooks(token, 1, keyword, 25)));
+            }, 1000)
+            // Always clear timeout on useEffect.
+            return () => clearTimeout(delayDebounceFn)
+        }
     }, [token, keyword]);
 
     return (
