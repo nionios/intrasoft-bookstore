@@ -1,11 +1,12 @@
-import {BookBoxType, UserInfo} from "@/types";
+import {UserInfo} from "@/types";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons'
-import {useCallback, useEffect, useState} from "react";
+import {useEffect, useState} from "react";
 import fetchAllBooks from "@/lib/fetchAllBooks";
 import {useCookies} from "next-client-cookies";
 import populateBookBoxes from "@/lib/populateBookBoxes";
 import {redirect} from "next/navigation";
+import Link from "next/link";
 
 /**
  * Search box also containing user info on homepage.
@@ -14,9 +15,9 @@ import {redirect} from "next/navigation";
  * @param props.userInfo {UserInfo} A UserInfo object with the user's personal info from endpoint
  * @constructor
  */
-export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpdate : Function}) {
+export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpdate: Function }) {
     const [keyword, setKeyword] = useState('');
-    const token : string | undefined = useCookies().get("token");
+    const token: string | undefined = useCookies().get("token");
     if (token === undefined) {
         // If token does not exist, user should authenticate again.
         redirect('/login')
@@ -36,18 +37,24 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpda
 
     return (
         <div id="searchBox"
-             className="grid rounded-lg drop-shadow-lg w-11/12 sm:fixed relative max-w-3xl p-5 m-5 mx-10 z-30">
-            <div className="text-sm">
-                Hello,
+             className="grid rounded-lg grid-cols-3 drop-shadow-lg w-11/12 sm:fixed relative max-w-3xl p-5 m-5 mx-10 z-30">
+            <div className="col-span-3 md:col-span-2">
+                <div className="text-sm">
+                    Hello,
+                </div>
+                <div className="text-lg">
+                    {props.userInfo.userFirstName} {props.userInfo.userLastName}
+                </div>
+                <div className="text-sm">
+                    {props.userInfo.userEmail}
+                </div>
             </div>
-            <div className="text-lg">
-                {props.userInfo.userFirstName} {props.userInfo.userLastName}
+            <div className="col-span-3 md:col-span-1 grid justify-center mt-3 md:mt-0 md:justify-items-end content-center">
+                <Link className="bg-amber-400 btn-animate py-2 px-10 rounded-full w-40"
+                      href="/book/create">Add A Book</Link>
             </div>
-            <div className="text-sm">
-                {props.userInfo.userEmail}
-            </div>
-            <hr className="h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>
-            <div>
+            <hr className="row-span-1 col-span-3 h-px my-4 bg-gray-200 border-0 dark:bg-gray-700"/>
+            <div className="col-span-3">
                 <label htmlFor="bookQuery"
                        className="block text-sm font-medium leading-6">
                     Search for a book
@@ -55,7 +62,8 @@ export default function UserSearchBox(props: { userInfo: UserInfo, onBookBoxUpda
                 <div className="relative mt-2 rounded-md shadow-sm">
                     <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
                         <span className="text-gray-500 sm:text-sm">
-                            <FontAwesomeIcon className="fill-netcompany-accent-dark" icon={faMagnifyingGlass} />
+                            <FontAwesomeIcon className="fill-netcompany-accent-dark"
+                                             icon={faMagnifyingGlass}/>
                         </span>
                     </div>
                     <input type="text"
